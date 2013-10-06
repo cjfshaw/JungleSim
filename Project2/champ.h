@@ -13,7 +13,7 @@ public:
 	void AutoAttack(); //Attack a monster
 
 	//variables
-	int hp;
+	float hp;
 	float hp5;
 	//int mp;
 	//float mp5;

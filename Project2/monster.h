@@ -14,7 +14,7 @@ public:
 	void BecomeYoungLizard(); //Gives the monster object young lizard stats
 	 
 	//variables
-	int hp;
+	float hp;
 	int range; //add unsigned etc?
 	float dmg;
 	float as;
