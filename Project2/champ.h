@@ -23,4 +23,6 @@ public:
 	float armor;
 	float mr;
 	float ms;
+	float exp;
+	int level;
 };
