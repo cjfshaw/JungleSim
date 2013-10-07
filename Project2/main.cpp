@@ -14,8 +14,8 @@ int main()
 	monster YoungLizard1;
 	monster YoungLizard2;
 
-	hero.TestStats();
-	ElderLizard.BecomeElderLizard();
+	hero.TestStats();//populate the empty champ/minion objects w this line and the next 3
+	ElderLizard.BecomeElderLizard();//there has to be a better way to do this i just dont know it
 	YoungLizard1.BecomeYoungLizard();
 	YoungLizard2.BecomeYoungLizard();
 
@@ -53,7 +53,6 @@ int main()
 
 		if ( elapsed_time > champ_atk_time*count )
 		{//need to add experience when something dies
-			//need to attack the next target when the first target dies
 			if ( ElderLizard.hp > 0 )
 			{
 				ElderLizard.hp = ElderLizard.hp - hero.dmg;
