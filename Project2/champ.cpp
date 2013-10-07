@@ -20,7 +20,7 @@ void champ::TestStats()  //Gives the champ easily usable stats
 	hp5=10;
 	range=600;
 	dmg=100;
-	as=1.0;
+	as=2.0;
 	armor=100;
 	mr=100;
 	ms=300;

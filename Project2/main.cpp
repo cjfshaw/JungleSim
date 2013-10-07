@@ -28,11 +28,12 @@ int main()
 	cout << "Champ hp:" << test.hp << endl;
 
 	float champ_atk_time = (1/test.as)*1000;
+	cout << "champ atk time: " << champ_atk_time << endl;
 	float monster_atk_time = (1/test2.as)*1000;
 
 	int count=1;
 
-	while( test.hp >= 0 || test2.hp >= 0 ) 
+	while( test.hp > 0 && test2.hp > 0 ) 
 	{
 		elapsed_time = clock() - time / (float) CLOCKS_PER_SEC;
 
@@ -61,7 +62,7 @@ int main()
 		}
 
 
-		//cout << "Elapsed time: " << elapsed_time << endl;
+		cout << "Elapsed time: " << elapsed_time << endl;
 	}
 
 	/*test.hp = test.hp - test2.dmg;
