@@ -11,6 +11,8 @@ public:
 	void CreateCheck(); //Print statement to test functionality
 	void TestStats(); //Gives the champ easily usable stats
 	void AutoAttack(); //Attack a monster
+	void LevelUp();
+	void CheckExp();
 
 	//variables
 	float hp;
@@ -25,4 +27,13 @@ public:
 	float ms;
 	float exp;
 	int level;
+	//level up stats
+	float hp_per_lvl;
+	float hp5_per_lvl;
+	float mp_per_lvl;
+	float mp5_per_lvl;
+	float dmg_per_lvl;
+	float as_per_lvl;
+	float armor_per_lvl;
+	float mr_per_lvl;
 };

@@ -32,3 +32,37 @@ void champ::AutoAttack() // want champ to be able to AA a target (monster)
 {
 	hp=hp - dmg;
 }
+
+void champ::LevelUp() //upgrade the champ's stats to the ones at the next level
+{
+	level++;
+	hp=hp+hp_per_lvl;//need to make current hp and max hp to account for this
+	hp5=hp5+hp5_per_lvl;
+	dmg=dmg+dmg_per_lvl;
+	as=as+as_per_lvl;
+	armor=armor+armor_per_lvl;
+	mr=mr+mr_per_lvl;
+}
+
+void champ::CheckExp() // check if champ's experience is enough to level up
+{
+	int ExpForNextLevel; 
+	bool EnoughExpToLevel;
+
+	if ( level = 1 )
+	{
+		ExpForNextLevel = 280;
+	}
+	else
+	{
+		ExpForNextLevel = 280 + 110*level;
+	}
+
+	if ( level < 18)
+	{
+		if ( exp >= ExpForNextLevel )
+		{
+			LevelUp();
+		}
+	}
+}
