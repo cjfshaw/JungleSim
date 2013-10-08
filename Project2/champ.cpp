@@ -53,15 +53,11 @@ void champ::LevelUp() //upgrade the champ's stats to the ones at the next level
 	cout << "Champion is level: " << level << endl;
 }
 
-void champ::CheckExp() // check if champ's experience is enough to level up
-{
-	//int ExpForNextLevel;
-
+void champ::CheckExp() // check if champ's experience is enough to level up, if it is use the level up function
+{//TODO: VERIFY THIS WORKS FOR ALL LEVELS
 	int i;
 	int current_exp=0;
 	int cum_exp=0;
-
-	//ExpForNextLevel = 280 + 110*(level-2); 
 
 	if ( level < 18)
 	{
@@ -78,69 +74,9 @@ void champ::CheckExp() // check if champ's experience is enough to level up
 				cum_exp = cum_exp + current_exp;
 			}
 		}
-
-		/*for ( i=level; i>1; i--)
-		{
-			if ( i >= 2 )
-			{
-				current_exp = 280 + ( 110 * (i-2) );
-				cum_exp = cum_exp + current_exp;
-			}
-			else 
-			{
-				current_exp = 280;
-				cum_exp = cum_exp + current_exp;
-			}
-		}*/
-
-		/*
-		if ( level == 1 )
-		{
-			total_exp=280;
-		}
-		else
-		{
-			total_exp=0;
-			for ( i=2; i <= level; i++ )
-			{
-				temp_exp=0;
-
-				temp_exp=280+( 110 * (i-2) );
-				total_exp = total_exp + temp_exp;
-
-				cout << "exp to level " << i << ": " << temp_exp << endl;
-				cout << "total exp needed for level " << i << ": " << total_exp << endl;
-			}
-		}
-		*/
-
-		if ( exp >= cum_exp ) //Verify: That you hit level 3
+		if ( exp >= cum_exp )
 		{
 			LevelUp();
 		}
 	}
-
-	///////////////////////////////////////////////////////////////////
-	/* Working code for cumulative exp
-	int i;
-	int cum_exp=0;
-	int current_exp=0;
-
-	for ( i=17; i>1; i--)
-	{
-		if ( i >= 2 )
-		{
-			current_exp = 280 + ( 110 * (i-2) );
-			cum_exp = cum_exp + current_exp;
-		}
-		else 
-		{
-			current_exp = 280;
-			cum_exp = cum_exp + current_exp;
-		}
-	}
-
-	cout << "Cumulative exp for level 17: " << cum_exp << endl;
-	*/
-	///////////////////////////////////////////////////////////////////
 }
