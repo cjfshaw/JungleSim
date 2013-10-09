@@ -17,7 +17,7 @@ The goal of this is to be high fidelity, which means that it is as accurate as p
 
 The latest version
 --------------------------------------------
-Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  However, the rate at which the champion levels up is currently incorrect due to an error in the CheckExp function, found in champ.cpp and champ.h.  I am unsure how to include the champion's current level in the calculations for this function.
+Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.
 
 Remaining goals
 --------------------------------------------
