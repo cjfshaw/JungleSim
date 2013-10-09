@@ -9,10 +9,14 @@ using namespace std;
 
 int main()
 {//change young lizard naming convention to something that shows what camp they belong to
-	//also make it such that it can be reused each time the camp is revived?
+	//also make it such that it (the naming convention) can be reused each time the camp is revived?
 	//condense fighting these camps into functions and subfunctions, a lot of repeated code
 	//account for time between camps
 	//account for start time (1:55)
+	//still need to account for items, runes, masteries, and abilities, timing, and regen, and proper damage ratios
+	//minions scaling over time, buff transfer, sigil (hp/mp from big minions) transfer
+	//335 ms (22s), 360 ms (20.5s), 375 ms (20s), 403 ms (19s)
+		//ms * time to get distance
 	champ hero;
 	monster ElderLizard;
 	monster YoungLizard1;
