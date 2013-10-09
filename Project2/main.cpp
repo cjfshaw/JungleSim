@@ -1,3 +1,4 @@
+#include "unit.h"
 #include "champ.h"
 #include "monster.h"
 

@@ -20,14 +20,5 @@ public:
 	float as;
 	float armor;
 	float mr;
+	float ms;
 };
-
-/*monster::monster ()
-{
-	hp=1;
-	range=100;
-	dmg=1;
-	as=0.5;
-	armor=0;
-	mr=0;
-}*/

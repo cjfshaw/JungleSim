@@ -25,6 +25,7 @@ public:
 	float armor;
 	float mr;
 	float ms;
+	int crit_bonus;
 	float exp;
 	int level;
 	//level up stats

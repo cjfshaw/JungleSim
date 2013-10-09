@@ -66,12 +66,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="champ.h" />
+    <ClInclude Include="Header.h" />
     <ClInclude Include="monster.h" />
+    <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="champ.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
