@@ -42,3 +42,17 @@ Minions scaling over time, buff transfer, sigil (hp/mp from big minions) transfe
 335 ms (22s), 360 ms (20.5s), 375 ms (20s), 403 ms (19s)
 
 		ms * time to get distance
+		
+Overall design approach
+---------------------------------------------
+NOTE: The general philosophy for this design is to start with the aspects of the simulation that would apply to every champion, and then move onto the parts of the game that only apply to a subset of champions.  What this means is that there will be:
+
+1.) A pseudo-champion that can clear the jungle with all the appropriate calculations (gold, experience, hp5) and modifications (sigils, buffs).  With proper logging on ending stats.
+
+2.) Masteries included.
+
+3.) Runes included.
+
+4.) Items included.
+
+5.) Innate skills and learned abilities included.
