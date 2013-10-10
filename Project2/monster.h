@@ -3,7 +3,9 @@
 Need a default constructor
 */
 
-class monster
+#include "unit.h"
+
+class monster: public unit
 {
 public:
 	//include function prototypes and stats here
