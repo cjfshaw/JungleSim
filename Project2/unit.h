@@ -20,6 +20,7 @@ public:
 	float mr;
 	float ms;
 	int crit_chance;
+	int counter;
 };
 
 #endif

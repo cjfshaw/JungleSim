@@ -1,28 +1,42 @@
 #include "stdlib.h"
 #include <iostream>
 #include <ctime>
+#include <utility> //for pair
 
 #include "champ.h"
 #include "monster.h"
 
 using namespace std;
 
-int ChampCounter = 1;
-
-float ChampAttack(monster target, champ attacker)
-{//PROBLEM: Not exactly sure yet, but it breaks when I replace the code with this function
+std::pair <float,float> ChampAttackResults; //pair is necessary to include both champ exp and monster hp
+std::pair <float,float> ChampAttack(monster target, champ attacker)
+{//PROBLEM: This sped up the fights considerably, might need to alter timing to be correct
+		
 		target.hp = target.hp - attacker.dmg;
-		cout << "Attacker attacks" << endl;
-		cout << "Target health " << target.hp << endl;
-		ChampCounter++;
+		cout << target.name << " attacks" << endl;
+		cout << target.name << " health " << target.hp << endl;
+		attacker.counter++;
+		
 		if ( target.hp <= 0 )
 		{
-			cout << "Target is dead." << endl;
+			cout << target.name << " is dead." << endl;
 			attacker.exp = attacker.exp + target.exp_given;
 			attacker.CheckExp();
 		}
-		
-		return target.hp;
+
+		return ChampAttackResults = std::make_pair (target.hp, attacker.exp);
+
+}
+
+float MonsterAttack(champ target, monster attacker)
+{
+			target.hp = target.hp - attacker.dmg;
+			cout << attacker.name << " attacks" << endl;
+			cout << target.name << " health " << target.hp << endl;
+			attacker.counter++;
+			//ElderLizardCount++; //to generalize... "target.name"Count++
+			
+			return target.hp;
 }
 
 int main()
@@ -65,10 +79,6 @@ int main()
 	float ancient_atk_time = (1/AncientGolem.as)*1000;
 
 	int ChampCount=1;
-	int ElderLizardCount=1;
-	int YoungLizard1Count=1;
-	int YoungLizard2Count=1;
-
 	int AncientGolemCount=1;
 	int YoungLizard3Count=1;
 	int YoungLizard4Count=1;
@@ -79,71 +89,38 @@ int main()
 		elapsed_time = clock() - time / (float) CLOCKS_PER_SEC; 
 		elapsed_time2 = (clock() - time) / (float) CLOCKS_PER_SEC; 
 
-		if ( elapsed_time > champ_atk_time*ChampCount )
+		if ( elapsed_time > champ_atk_time*hero.counter )
 		{
 			if ( ElderLizard.hp > 0 ) //if elder lizard is alive atk him
-			{//refactor to ChampAttack function
-				//ElderLizard.hp = ChampAttack(ElderLizard, hero);
-				ElderLizard.hp = ElderLizard.hp - hero.dmg;
-				cout << "champ attacks" << endl;
-				cout << "Elder Lizard health " << ElderLizard.hp << endl;
-				ChampCount++;
-				if ( ElderLizard.hp <= 0 )
-				{
-					cout << "Elder Lizard is dead." << endl;
-					hero.exp = hero.exp + 260;
-					hero.CheckExp();
-				}
+			{//TODO: turn the following lines into one line cleanly?
+				ChampAttackResults = ChampAttack(ElderLizard, hero);
+				ElderLizard.hp = ChampAttackResults.first;
+				hero.exp = ChampAttackResults.second;
 			}
 			else if ( YoungLizard1.hp > 0 ) //if young lizard 1 is alive atk him
-			{//refactor to ChampAttack function
-				//YoungLizard1.hp = ChampAttack(YoungLizard1, hero);
-				YoungLizard1.hp = YoungLizard1.hp - hero.dmg;
-				cout << "champ attacks" << endl;
-				cout << "Young Lizard 1 health " << YoungLizard1.hp << endl;
-				ChampCount++;
-				if ( YoungLizard1.hp <= 0 )
-				{
-					cout << "Young Lizard 1 is dead." << endl;
-					hero.exp = hero.exp + 50;
-					hero.CheckExp();
-				}
+			{//TODO: turn the following lines into one line cleanly?
+				ChampAttackResults = ChampAttack(YoungLizard1, hero);
+				YoungLizard1.hp = ChampAttackResults.first;
+				hero.exp = ChampAttackResults.second;
 			}
 			else if ( YoungLizard2.hp > 0 ) //if young lizard 2 is alive atk him
-			{//refactor to ChampAttack function
-				//YoungLizard2.hp = ChampAttack(YoungLizard2, hero);
-				YoungLizard2.hp = YoungLizard2.hp - hero.dmg;
-				cout << "champ attacks" << endl;
-				cout << "Young Lizard 2 health " << YoungLizard2.hp << endl;
-				ChampCount++;
-				if ( YoungLizard2.hp <= 0 )
-				{
-					cout << "Young Lizard 2 is dead." << endl;
-					hero.exp = hero.exp + 50;
-					hero.CheckExp();
-				}
+			{//TODO: turn the following lines into one line cleanly?
+				ChampAttackResults = ChampAttack(YoungLizard2, hero);
+				YoungLizard2.hp = ChampAttackResults.first;
+				hero.exp = ChampAttackResults.second;
 			}
 		}
-		if ( (elapsed_time > elder_atk_time*ElderLizardCount) && ElderLizard.hp > 0 ) //elder lizard attacking champ
+		if ( (elapsed_time > elder_atk_time*ElderLizard.counter) && ElderLizard.hp > 0 ) //elder lizard attacking champ
 		{//refactor
-			hero.hp = hero.hp - ElderLizard.dmg;
-			cout << "Elder Lizard attacks" << endl;
-			cout << "champ health " << hero.hp << endl;
-			ElderLizardCount++; //to generalize... "target.name"Count++
+			hero.hp = MonsterAttack(hero, ElderLizard);
 		}
-		if ( (elapsed_time > young_atk_time*YoungLizard1Count) && YoungLizard1.hp > 0 ) //young lizard 1 attacking champ
+		if ( (elapsed_time > young_atk_time*YoungLizard1.counter) && YoungLizard1.hp > 0 ) //young lizard 1 attacking champ
 		{//refactor
-			hero.hp = hero.hp - (YoungLizard1.dmg);
-			cout << "Young Lizard 1 attacks" << endl;
-			cout << "champ health " << hero.hp << endl;
-			YoungLizard1Count++;
+			hero.hp = MonsterAttack(hero, YoungLizard1);
 		}
-		if ( (elapsed_time > young_atk_time*YoungLizard2Count) && YoungLizard2.hp > 0 ) //young lizard 2 attacking champ
+		if ( (elapsed_time > young_atk_time*YoungLizard2.counter) && YoungLizard2.hp > 0 ) //young lizard 2 attacking champ
 		{//refactor
-			hero.hp = hero.hp - (YoungLizard2.dmg);
-			cout << "Young Lizard 2 attacks" << endl;
-			cout << "champ health " << hero.hp << endl;
-			YoungLizard2Count++;
+			hero.hp = MonsterAttack(hero, YoungLizard2);
 		}
 	}
 

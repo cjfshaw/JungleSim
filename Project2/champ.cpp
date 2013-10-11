@@ -22,8 +22,9 @@ void champ::TestStats()  //Gives the champ easily usable stats
 	mp=1000;
 	mp5=50;
 	range=600;
-	dmg=200;
-	as=2.25;
+	dmg=65;
+	as=0.781;
+	crit_bonus=200;
 	armor=100;
 	mr=100;
 	ms=300;
@@ -33,10 +34,11 @@ void champ::TestStats()  //Gives the champ easily usable stats
 	hp5_per_lvl=5;
 	mp_per_lvl=50;
 	mp5_per_lvl=5;
-	dmg_per_lvl=50;
-	as_per_lvl=0.25;
+	dmg_per_lvl=3.45;
+	as_per_lvl=0.0125;
 	armor_per_lvl=30;
 	mr_per_lvl=30;
+	counter=1;
 }
 
 void champ::LevelUp() //upgrade the champ's stats to the ones at the next level

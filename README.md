@@ -17,7 +17,7 @@ The goal of this is to be high fidelity, which means that it is as accurate as p
 
 The latest version
 --------------------------------------------
-Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.
+Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  The fight at the red buff camp has been moved into subfunctions.  There was a significant speedup when the champion attacks were moved into functions.  This doesn't seem right.  The fight at the golem camp is pretty accurate right now (~43.5s compared to real-world ~47s).
 
 Remaining goals (not in order)
 --------------------------------------------
