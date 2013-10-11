@@ -14,7 +14,7 @@ void champ::CreateCheck() //Print statement to test functionality
 
 //create a constructor with (name) to populate champs like champ(Ashe)
 
-void champ::TestStats()  //Gives the champ easily usable stats
+void champ::TestStats()  //Currently using beefy ass nunu stats w red pot + consumed (not killed) golem
 { //use this to 'set' later
 	name="TestChampion";
 	hp=3000;
