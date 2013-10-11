@@ -1,12 +1,29 @@
-#include "unit.h"
-#include "champ.h"
-#include "monster.h"
-
 #include "stdlib.h"
 #include <iostream>
 #include <ctime>
 
+#include "champ.h"
+#include "monster.h"
+
 using namespace std;
+
+int ChampCounter = 1;
+
+float ChampAttack(monster target, champ attacker)
+{//PROBLEM: Not exactly sure yet, but it breaks when I replace the code with this function
+		target.hp = target.hp - attacker.dmg;
+		cout << "Attacker attacks" << endl;
+		cout << "Target health " << target.hp << endl;
+		ChampCounter++;
+		if ( target.hp <= 0 )
+		{
+			cout << "Target is dead." << endl;
+			attacker.exp = attacker.exp + target.exp_given;
+			attacker.CheckExp();
+		}
+		
+		return target.hp;
+}
 
 int main()
 {//change young lizard naming convention to something that shows what camp they belong to
@@ -65,7 +82,8 @@ int main()
 		if ( elapsed_time > champ_atk_time*ChampCount )
 		{
 			if ( ElderLizard.hp > 0 ) //if elder lizard is alive atk him
-			{//refactor
+			{//refactor to ChampAttack function
+				//ElderLizard.hp = ChampAttack(ElderLizard, hero);
 				ElderLizard.hp = ElderLizard.hp - hero.dmg;
 				cout << "champ attacks" << endl;
 				cout << "Elder Lizard health " << ElderLizard.hp << endl;
@@ -78,7 +96,8 @@ int main()
 				}
 			}
 			else if ( YoungLizard1.hp > 0 ) //if young lizard 1 is alive atk him
-			{//refactor
+			{//refactor to ChampAttack function
+				//YoungLizard1.hp = ChampAttack(YoungLizard1, hero);
 				YoungLizard1.hp = YoungLizard1.hp - hero.dmg;
 				cout << "champ attacks" << endl;
 				cout << "Young Lizard 1 health " << YoungLizard1.hp << endl;
@@ -91,7 +110,8 @@ int main()
 				}
 			}
 			else if ( YoungLizard2.hp > 0 ) //if young lizard 2 is alive atk him
-			{//refactor
+			{//refactor to ChampAttack function
+				//YoungLizard2.hp = ChampAttack(YoungLizard2, hero);
 				YoungLizard2.hp = YoungLizard2.hp - hero.dmg;
 				cout << "champ attacks" << endl;
 				cout << "Young Lizard 2 health " << YoungLizard2.hp << endl;
@@ -109,7 +129,7 @@ int main()
 			hero.hp = hero.hp - ElderLizard.dmg;
 			cout << "Elder Lizard attacks" << endl;
 			cout << "champ health " << hero.hp << endl;
-			ElderLizardCount++;
+			ElderLizardCount++; //to generalize... "target.name"Count++
 		}
 		if ( (elapsed_time > young_atk_time*YoungLizard1Count) && YoungLizard1.hp > 0 ) //young lizard 1 attacking champ
 		{//refactor

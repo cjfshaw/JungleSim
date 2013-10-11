@@ -16,8 +16,11 @@ void champ::CreateCheck() //Print statement to test functionality
 
 void champ::TestStats()  //Gives the champ easily usable stats
 { //use this to 'set' later
+	name="TestChampion";
 	hp=3000;
 	hp5=50;
+	mp=1000;
+	mp5=50;
 	range=600;
 	dmg=200;
 	as=2.25;
@@ -36,16 +39,15 @@ void champ::TestStats()  //Gives the champ easily usable stats
 	mr_per_lvl=30;
 }
 
-void champ::AutoAttack() // want champ to be able to AA a target (monster)
-{
-	hp=hp - dmg;
-}
-
 void champ::LevelUp() //upgrade the champ's stats to the ones at the next level
 {
 	level++;
 	hp=hp+hp_per_lvl;//need to make current hp and max hp to account for this
+	//if (hp + hp_per_lvl) < max hp then hp = hp + hp_per_level, else hp=max_hp
+	//same for mp
 	hp5=hp5+hp5_per_lvl;
+	mp=mp+mp_per_lvl;
+	mp5=mp5+mp5_per_lvl;
 	dmg=dmg+dmg_per_lvl;
 	as=as+as_per_lvl;
 	armor=armor+armor_per_lvl;

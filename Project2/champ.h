@@ -1,9 +1,11 @@
+#include "unit.h"
+
 //header for champ.cpp
 /*
 Need a default constructor
 */
 
-class champ
+class champ : public unit
 {
 public:
 	//include function prototypes and stats here
@@ -15,23 +17,25 @@ public:
 	void CheckExp();
 
 	//variables
-	float hp;
+	//float hp;
 	float hp5;
+	int mp;
+	float mp5;
 	//int mp;
 	//float mp5;
-	int range;
-	float dmg;
-	float as;
-	float armor;
-	float mr;
-	float ms;
+	//int range;
+	//float dmg;
+	//float as;
+	//float armor;
+	//float mr;
+	//float ms;
 	int crit_bonus;
 	float exp;
 	int level;
 	//level up stats
 	float hp_per_lvl;
 	float hp5_per_lvl;
-	float mp_per_lvl;
+	int mp_per_lvl;
 	float mp5_per_lvl;
 	float dmg_per_lvl;
 	float as_per_lvl;

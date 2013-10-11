@@ -1,11 +1,11 @@
+#include "unit.h"
+
 //header for monster
 /*
 Need a default constructor
 */
 
-#include "unit.h"
-
-class monster: public unit
+class monster : public unit
 {
 public:
 	//include function prototypes and stats here
@@ -16,11 +16,12 @@ public:
 	void BecomeYoungLizard(); //Gives the monster object young lizard stats
 	 
 	//variables
-	float hp;
-	int range; //add unsigned etc?
-	float dmg;
-	float as;
-	float armor;
-	float mr;
-	float ms;
+	float exp_given;
+	//float hp;
+	//int range; //add unsigned etc?
+	//float dmg;
+	//float as;
+	//float armor;
+	//float mr;
+	//float ms;
 };
