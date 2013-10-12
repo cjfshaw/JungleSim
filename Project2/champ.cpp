@@ -16,7 +16,7 @@ void champ::CreateCheck() //Print statement to test functionality
 
 void champ::TestStats()  //Currently using beefy ass nunu stats w red pot + consumed (not killed) golem
 { //use this to 'set' later
-	name="TestChampion";
+	name="Nunu";
 	hp=3000;
 	hp5=50;
 	mp=1000;

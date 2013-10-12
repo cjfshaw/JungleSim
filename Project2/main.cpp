@@ -1,17 +1,25 @@
 #include "stdlib.h"
 #include <iostream>
-#include <ctime>
+#include <ctime> //for timer
 #include <utility> //for pair
+//#include <Windows.h> //for sleep
 
 #include "champ.h"
 #include "monster.h"
 
 using namespace std;
 
+void ChampionAttack(monster *target, champ *attacker)
+{
+	(*target.hp) = 5555;
+	(*attacker.exp) = 50;
+	(*attacker.counter)++;
+}
+
 std::pair <float,float> ChampAttackResults; //pair is necessary to include both champ exp and monster hp
 std::pair <float,float> ChampAttack(monster target, champ attacker)
 {//PROBLEM: This sped up the fights considerably, might need to alter timing to be correct
-		
+		//THINK I NEED TO RETURN CHAMP COUNTER!!!
 		target.hp = target.hp - attacker.dmg;
 		cout << target.name << " attacks" << endl;
 		cout << target.name << " health " << target.hp << endl;
@@ -34,20 +42,19 @@ float MonsterAttack(champ target, monster attacker)
 			cout << attacker.name << " attacks" << endl;
 			cout << target.name << " health " << target.hp << endl;
 			attacker.counter++;
-			//ElderLizardCount++; //to generalize... "target.name"Count++
 			
 			return target.hp;
 }
 
 int main()
 {//change young lizard naming convention to something that shows what camp they belong to
-	//also make it such that it (the naming convention) can be reused each time the camp is revived?
 	//condense fighting these camps into functions and subfunctions, a lot of repeated code
 	//account for time between camps
 	//account for start time (1:55)
 	//still need to account for items, runes, masteries, and abilities, timing, and regen, and proper damage ratios
 	//minions scaling over time, buff transfer, sigil (hp/mp from big minions) transfer
-	//335 ms (22s), 360 ms (20.5s), 375 ms (20s), 403 ms (19s)
+	//335 ms (22s), 360 ms (20.5s), 375 ms (20s), 403 ms (19s), 325 ms (21s), 416 ms (18.5-19s), 
+	//361 ms (19.5-20), 389 ms (18.5s), 387 ms (19s)
 		//ms * time to get distance
 	champ hero;
 	monster ElderLizard;
@@ -91,7 +98,9 @@ int main()
 
 		if ( elapsed_time > champ_atk_time*hero.counter )
 		{
+			cout << "Elapsed time: " << elapsed_time << endl;
 			if ( ElderLizard.hp > 0 ) //if elder lizard is alive atk him
+				//does not appear to be working, fight starts with younglizard1 at 10hp
 			{//TODO: turn the following lines into one line cleanly?
 				ChampAttackResults = ChampAttack(ElderLizard, hero);
 				ElderLizard.hp = ChampAttackResults.first;
@@ -147,7 +156,7 @@ int main()
 				if ( AncientGolem.hp <= 0 )
 				{
 					cout << "Elder Lizard is dead." << endl;
-					hero.exp = hero.exp + 260;
+					hero.exp = hero.exp + AncientGolem.exp_given;
 					hero.CheckExp();
 				}
 			}
@@ -160,7 +169,7 @@ int main()
 				if ( YoungLizard3.hp <= 0 )
 				{
 					cout << "Young Lizard 3 is dead." << endl;
-					hero.exp = hero.exp + 50;
+					hero.exp = hero.exp + YoungLizard3.exp_given;
 					hero.CheckExp();
 				}
 			}
@@ -173,7 +182,7 @@ int main()
 				if ( YoungLizard4.hp <= 0 )
 				{
 					cout << "Young Lizard 4 is dead." << endl;
-					hero.exp = hero.exp + 50;
+					hero.exp = hero.exp + YoungLizard4.exp_given;
 					hero.CheckExp();
 				}
 			}
