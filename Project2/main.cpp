@@ -11,9 +11,17 @@ using namespace std;
 
 void ChampionAttack(monster *target, champ *attacker)
 {
-	target.hp=target.hp-attacker.dmg;
-	(*target);
-	(*attacker);
+	(*target).hp=(*target).hp-(*attacker).dmg;
+	cout << (*target).name << " attacks" << endl;
+	cout << (*target).name << " health " << (*target).hp << endl;
+	(*attacker).counter++;
+	
+	if ( (*target).hp <= 0 )
+	{
+		cout << (*target).name << " is dead." << endl;
+		(*attacker).exp = (*attacker).exp + (*target).exp_given;
+		(*attacker).CheckExp();
+	}
 }
 
 std::pair <float,float> ChampAttackResults; //pair is necessary to include both champ exp and monster hp
@@ -93,6 +101,7 @@ int main()
 	while( hero.hp > 0 && (ElderLizard.hp > 0 || YoungLizard1.hp > 0 || YoungLizard2.hp > 0 ) ) 
 	{//this loop has the champion fighting the Elder Lizard camp
 		//does not account for red buff or hp/mp sigil yet
+		//red buff not working properly, don't know why!
 		elapsed_time = clock() - time / (float) CLOCKS_PER_SEC; 
 		elapsed_time2 = (clock() - time) / (float) CLOCKS_PER_SEC; 
 
@@ -102,6 +111,9 @@ int main()
 			if ( ElderLizard.hp > 0 ) //if elder lizard is alive atk him
 				//does not appear to be working, fight starts with younglizard1 at 10hp
 			{//TODO: turn the following lines into one line cleanly?
+				
+				//ChampionAttack(&ElderLizard, &hero);
+
 				ChampAttackResults = ChampAttack(ElderLizard, hero);
 				ElderLizard.hp = ChampAttackResults.first;
 				hero.exp = ChampAttackResults.second;
@@ -137,7 +149,7 @@ int main()
 
 	cout << "Elapsed time: " << elapsed_time << endl;
 	cout << "Elapsed time2: " << elapsed_time2 << endl;
-	cout << "Champ level: " << hero.level << endl;
+	cout << "Champ level: " << hero.level << endl; //TODO: LOOK AT THIS SHOWING 1 WHEN LEVEL IS 2
 	
 	while( hero.hp > 0 && (AncientGolem.hp > 0 || YoungLizard3.hp > 0 || YoungLizard4.hp > 0 ) ) 
 	{//this loop has the champion fighting the Ancient Golem camp
@@ -149,20 +161,20 @@ int main()
 		{
 			if ( AncientGolem.hp > 0 ) //if elder lizard is alive atk him
 			{//refactor
-				AncientGolem.hp = AncientGolem.hp - hero.dmg;
+				AncientGolem.hp = AncientGolem.hp - ( hero.dmg * ( 100 / (100 + AncientGolem.armor ) ) );
 				cout << "champ attacks" << endl;
-				cout << "Elder Lizard health " << AncientGolem.hp << endl;
+				cout << "Ancient Golem health " << AncientGolem.hp << endl;
 				ChampCount++;
 				if ( AncientGolem.hp <= 0 )
 				{
-					cout << "Elder Lizard is dead." << endl;
+					cout << "Ancient Golem is dead." << endl;
 					hero.exp = hero.exp + AncientGolem.exp_given;
 					hero.CheckExp();
 				}
 			}
 			else if ( YoungLizard3.hp > 0 ) //if Young Lizard 3 is alive atk him
 			{//refactor
-				YoungLizard3.hp = YoungLizard3.hp - hero.dmg;
+				YoungLizard3.hp = YoungLizard3.hp - ( hero.dmg * ( 100 / (100 + YoungLizard3.armor ) ) );
 				cout << "champ attacks" << endl;
 				cout << "Young Lizard 3 health " << YoungLizard3.hp << endl;
 				ChampCount++;
@@ -175,7 +187,7 @@ int main()
 			}
 			else if ( YoungLizard4.hp > 0 ) //if Young Lizard 4 is alive atk him
 			{//refactor
-				YoungLizard4.hp = YoungLizard4.hp - hero.dmg;
+				YoungLizard4.hp = YoungLizard4.hp - ( hero.dmg * ( 100 / (100 + YoungLizard4.armor ) ) );
 				cout << "champ attacks" << endl;
 				cout << "Young Lizard 4 health " << YoungLizard4.hp << endl;
 				ChampCount++;
@@ -187,23 +199,23 @@ int main()
 				}
 			}
 		}
-		if ( (elapsed_time > elder_atk_time*AncientGolemCount) && AncientGolem.hp > 0 ) //elder lizard attacking champ
+		if ( (elapsed_time > ancient_atk_time*AncientGolemCount) && AncientGolem.hp > 0 ) //elder lizard attacking champ
 		{//refactor
 			hero.hp = hero.hp - AncientGolem.dmg;
-			cout << "Elder Lizard attacks" << endl;
+			cout << "Ancient Golem attacks" << endl;
 			cout << "champ health " << hero.hp << endl;
 			AncientGolemCount++;
 		}
 		if ( (elapsed_time > young_atk_time*YoungLizard3Count) && YoungLizard3.hp > 0 ) //Young Lizard 3 attacking champ
 		{//refactor
-			hero.hp = hero.hp - (YoungLizard3.dmg);
+			hero.hp = hero.hp - YoungLizard3.dmg;
 			cout << "Young Lizard 3 attacks" << endl;
 			cout << "champ health " << hero.hp << endl;
 			YoungLizard3Count++;
 		}
 		if ( (elapsed_time > young_atk_time*YoungLizard4Count) && YoungLizard4.hp > 0 ) //Young Lizard 4 attacking champ
 		{//refactor
-			hero.hp = hero.hp - (YoungLizard4.dmg);
+			hero.hp = hero.hp - YoungLizard4.dmg;
 			cout << "Young Lizard 4 attacks" << endl;
 			cout << "champ health " << hero.hp << endl;
 			YoungLizard4Count++;
