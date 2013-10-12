@@ -11,9 +11,9 @@ using namespace std;
 
 void ChampionAttack(monster *target, champ *attacker)
 {
-	(*target.hp) = 5555;
-	(*attacker.exp) = 50;
-	(*attacker.counter)++;
+	target.hp=target.hp-attacker.dmg;
+	(*target);
+	(*attacker);
 }
 
 std::pair <float,float> ChampAttackResults; //pair is necessary to include both champ exp and monster hp
