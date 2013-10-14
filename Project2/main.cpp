@@ -108,6 +108,7 @@ int main()
 
 	//POPULATE CHAMPION AND JUNGLE MONSTERS WITH PROPER STATS
 	hero.TestStats();
+
 	ElderLizard.BecomeElderLizard();
 	YoungLizard1.BecomeYoungLizard();
 	YoungLizard2.BecomeYoungLizard();
@@ -121,12 +122,13 @@ int main()
 	time = clock();
 	
 	//FIGHT THE JUNGLE CAMPS
-	FightCamp( &hero, &ElderLizard, &YoungLizard1, &YoungLizard2, &time);
+	//TODO: Make this interchangeable based on used input, whether you start blue or red.
+	FightCamp( &hero, &ElderLizard, &YoungLizard1, &YoungLizard2, &time );
 	//Need to double check that this works after ElderLizard dies, seems to be scrolling by very quickly after
 	//Elder and before AncientGolem.  Eliminate some text output or pipe to text file to verify.
 
-	FightCamp( &hero, &AncientGolem, &YoungLizard3, &YoungLizard4, &time);
+	FightCamp( &hero, &AncientGolem, &YoungLizard3, &YoungLizard4, &time );
 
-	std::cin.get();//WAIT FOR THE PROGRAM DOESN'T EXIT AUTOMATICALLY
+	std::cin.get();//WAIT SO THE PROGRAM DOESN'T EXIT AUTOMATICALLY
 	return 0;
 }

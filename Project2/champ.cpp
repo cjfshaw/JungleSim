@@ -51,7 +51,7 @@ void champ::LevelUp() //upgrade the champ's stats to the ones at the next level
 	mp=mp+mp_per_lvl;
 	mp5=mp5+mp5_per_lvl;
 	dmg=dmg+dmg_per_lvl;
-	as=as+as_per_lvl;
+	as=as+as_per_lvl;//TODO: CHANGE HOW LEVEL UP DOES AS (AS = AS * AS_PER_LVL) AS_PER_LEVEL SHOULD BE A % VALUE (EX: 2)
 	armor=armor+armor_per_lvl;
 	mr=mr+mr_per_lvl;
 	cout << "Champion is level: " << level << endl;
