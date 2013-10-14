@@ -19,6 +19,10 @@ The latest version
 --------------------------------------------
 Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  The fight at the red buff camp has been moved into subfunctions.  There was a significant speedup when the champion attacks were moved into functions.  This doesn't seem right.  The fight at the golem camp is pretty accurate right now (~43.5s compared to real-world ~47s).
 
+Latest problems
+--------------------------------------------
+Currently, there is a problem with the ChampAttack function.  It is located in main.cpp.  It needs to return the champion's counter data, but it doesn't.  In addition, there needs to be a better way of implementing the returned data, seen in lines 118-119, 124-125, and 130-131.  As a result, the code is blazing fast this portion of the simulation because the champion is 'attacking' every rotation instead of every x rotations.  This is throwing off the timing immensely; something that should take 40+ seconds is taking ~2.x seconds.  The function ChampionAttack was written in an attempt to replicate the work done by ChampAttack, except to do it with pointers instead.
+
 Remaining goals (not in order)
 --------------------------------------------
 Change young lizard naming convention to something that shows what camp they belong to
