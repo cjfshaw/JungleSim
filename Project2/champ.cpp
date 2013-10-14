@@ -22,7 +22,7 @@ void champ::TestStats()  //Currently using beefy ass nunu stats w red pot + cons
 	mp=1000;
 	mp5=50;
 	range=600;
-	dmg=65;
+	dmg=73;
 	as=0.781;
 	crit_bonus=200;
 	armor=100;

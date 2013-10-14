@@ -1,7 +1,6 @@
 #include "stdlib.h"
 #include <iostream>
 #include <ctime> //for timer
-#include <utility> //for pair
 //#include <Windows.h> //for sleep
 
 #include "champ.h"
@@ -11,8 +10,8 @@ using namespace std;
 
 void ChampionAttack(monster *target, champ *attacker)
 {
-	(*target).hp=(*target).hp-(*attacker).dmg;
-	cout << (*target).name << " attacks" << endl;
+	(*target).hp=(*target).hp-( (*attacker).dmg * ( 100 / (100 + (*target).armor ) ) );
+	cout << (*attacker).name << " attacks" << endl;
 	cout << (*target).name << " health " << (*target).hp << endl;
 	(*attacker).counter++;
 	
@@ -24,34 +23,12 @@ void ChampionAttack(monster *target, champ *attacker)
 	}
 }
 
-std::pair <float,float> ChampAttackResults; //pair is necessary to include both champ exp and monster hp
-std::pair <float,float> ChampAttack(monster target, champ attacker)
-{//PROBLEM: This sped up the fights considerably, might need to alter timing to be correct
-		//THINK I NEED TO RETURN CHAMP COUNTER!!!
-		target.hp = target.hp - attacker.dmg;
-		cout << target.name << " attacks" << endl;
-		cout << target.name << " health " << target.hp << endl;
-		attacker.counter++;
-		
-		if ( target.hp <= 0 )
-		{
-			cout << target.name << " is dead." << endl;
-			attacker.exp = attacker.exp + target.exp_given;
-			attacker.CheckExp();
-		}
-
-		return ChampAttackResults = std::make_pair (target.hp, attacker.exp);
-
-}
-
-float MonsterAttack(champ target, monster attacker)
+void MonsterAttack(champ *target, monster *attacker)
 {
-			target.hp = target.hp - attacker.dmg;
-			cout << attacker.name << " attacks" << endl;
-			cout << target.name << " health " << target.hp << endl;
-			attacker.counter++;
-			
-			return target.hp;
+	(*target).hp = (*target).hp - ( (*attacker).dmg * ( 100 / (100 + (*target).armor ) ) );
+	cout << (*attacker).name << " attacks" << endl;
+	cout << (*target).name << " health " << (*target).hp << endl;
+	(*attacker).counter++;
 }
 
 int main()
@@ -93,7 +70,7 @@ int main()
 	float young_atk_time = (1/YoungLizard1.as)*1000;
 	float ancient_atk_time = (1/AncientGolem.as)*1000;
 
-	int ChampCount=1;
+	//int ChampCount=1;
 	int AncientGolemCount=1;
 	int YoungLizard3Count=1;
 	int YoungLizard4Count=1;
@@ -101,7 +78,6 @@ int main()
 	while( hero.hp > 0 && (ElderLizard.hp > 0 || YoungLizard1.hp > 0 || YoungLizard2.hp > 0 ) ) 
 	{//this loop has the champion fighting the Elder Lizard camp
 		//does not account for red buff or hp/mp sigil yet
-		//red buff not working properly, don't know why!
 		elapsed_time = clock() - time / (float) CLOCKS_PER_SEC; 
 		elapsed_time2 = (clock() - time) / (float) CLOCKS_PER_SEC; 
 
@@ -109,39 +85,29 @@ int main()
 		{
 			cout << "Elapsed time: " << elapsed_time << endl;
 			if ( ElderLizard.hp > 0 ) //if elder lizard is alive atk him
-				//does not appear to be working, fight starts with younglizard1 at 10hp
-			{//TODO: turn the following lines into one line cleanly?
-				
-				//ChampionAttack(&ElderLizard, &hero);
-
-				ChampAttackResults = ChampAttack(ElderLizard, hero);
-				ElderLizard.hp = ChampAttackResults.first;
-				hero.exp = ChampAttackResults.second;
+			{	
+				ChampionAttack(&ElderLizard, &hero);
 			}
 			else if ( YoungLizard1.hp > 0 ) //if young lizard 1 is alive atk him
-			{//TODO: turn the following lines into one line cleanly?
-				ChampAttackResults = ChampAttack(YoungLizard1, hero);
-				YoungLizard1.hp = ChampAttackResults.first;
-				hero.exp = ChampAttackResults.second;
+			{			
+				ChampionAttack( &YoungLizard1, &hero );
 			}
 			else if ( YoungLizard2.hp > 0 ) //if young lizard 2 is alive atk him
-			{//TODO: turn the following lines into one line cleanly?
-				ChampAttackResults = ChampAttack(YoungLizard2, hero);
-				YoungLizard2.hp = ChampAttackResults.first;
-				hero.exp = ChampAttackResults.second;
+			{
+				ChampionAttack( &YoungLizard2, &hero );
 			}
 		}
 		if ( (elapsed_time > elder_atk_time*ElderLizard.counter) && ElderLizard.hp > 0 ) //elder lizard attacking champ
 		{//refactor
-			hero.hp = MonsterAttack(hero, ElderLizard);
+			MonsterAttack(&hero, &ElderLizard);
 		}
 		if ( (elapsed_time > young_atk_time*YoungLizard1.counter) && YoungLizard1.hp > 0 ) //young lizard 1 attacking champ
 		{//refactor
-			hero.hp = MonsterAttack(hero, YoungLizard1);
+			MonsterAttack(&hero, &YoungLizard1);
 		}
 		if ( (elapsed_time > young_atk_time*YoungLizard2.counter) && YoungLizard2.hp > 0 ) //young lizard 2 attacking champ
 		{//refactor
-			hero.hp = MonsterAttack(hero, YoungLizard2);
+			MonsterAttack(&hero, &YoungLizard2);
 		}
 	}
 
@@ -151,7 +117,52 @@ int main()
 	cout << "Elapsed time2: " << elapsed_time2 << endl;
 	cout << "Champ level: " << hero.level << endl; //TODO: LOOK AT THIS SHOWING 1 WHEN LEVEL IS 2
 	
+
 	while( hero.hp > 0 && (AncientGolem.hp > 0 || YoungLizard3.hp > 0 || YoungLizard4.hp > 0 ) ) 
+	{//this loop has the champion fighting the Elder Lizard camp
+		//does not account for red buff or hp/mp sigil yet
+		//blue buff not working properly, don't know why!
+		elapsed_time = clock() - time / (float) CLOCKS_PER_SEC; 
+		elapsed_time2 = (clock() - time) / (float) CLOCKS_PER_SEC; 
+
+		if ( elapsed_time > champ_atk_time*hero.counter )
+		{
+			cout << "Elapsed time: " << elapsed_time << endl;
+			if ( AncientGolem.hp > 0 ) //if elder lizard is alive atk him
+			{	
+				ChampionAttack(&AncientGolem, &hero);
+			}
+			else if ( YoungLizard3.hp > 0 ) //if young lizard 1 is alive atk him
+			{			
+				ChampionAttack( &YoungLizard3, &hero );
+			}
+			else if ( YoungLizard4.hp > 0 ) //if young lizard 2 is alive atk him
+			{
+				ChampionAttack( &YoungLizard4, &hero );
+			}
+		}
+		if ( (elapsed_time > elder_atk_time*AncientGolem.counter) && AncientGolem.hp > 0 ) //elder lizard attacking champ
+		{//refactor
+			MonsterAttack(&hero, &AncientGolem);
+		}
+		if ( (elapsed_time > young_atk_time*YoungLizard3.counter) && YoungLizard3.hp > 0 ) //young lizard 1 attacking champ
+		{//refactor
+			MonsterAttack(&hero, &YoungLizard3);
+		}
+		if ( (elapsed_time > young_atk_time*YoungLizard4.counter) && YoungLizard4.hp > 0 ) //young lizard 2 attacking champ
+		{//refactor
+			MonsterAttack(&hero, &YoungLizard4);
+		}
+	}
+
+	cout << "BLUE BUFF CAMP DEFEATED" << endl;
+
+	cout << "Elapsed time: " << elapsed_time << endl;
+	cout << "Elapsed time2: " << elapsed_time2 << endl;
+	cout << "Champ level: " << hero.level << endl; //TODO: LOOK AT THIS SHOWING 1 WHEN LEVEL IS 2
+
+
+	/*while( hero.hp > 0 && (AncientGolem.hp > 0 || YoungLizard3.hp > 0 || YoungLizard4.hp > 0 ) ) 
 	{//this loop has the champion fighting the Ancient Golem camp
 		//does not account for blue buff or hp/mp sigil yet
 		elapsed_time = clock() - time / (float) CLOCKS_PER_SEC; 
@@ -226,7 +237,7 @@ int main()
 
 	cout << "Elapsed time: " << elapsed_time << endl;
 	cout << "Elapsed time2: " << elapsed_time2 << endl;
-	cout << "Champ level: " << hero.level << endl;
+	cout << "Champ level: " << hero.level << endl;*/
 
 	cin.get();
 	return 0;
