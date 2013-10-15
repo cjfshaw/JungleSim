@@ -51,15 +51,15 @@ void FightCamp(champ *champion, monster *big_monster, monster *little_monster1, 
 		if ( elapsed_time > champ_atk_time*(*champion).counter )
 		{
 			cout << "Elapsed time: " << elapsed_time << endl;
-			if ( (*big_monster).hp > 0 ) //if elder lizard is alive atk him
+			if ( (*big_monster).hp > 0 ) //if the large monster is alive atk him
 			{	
 				ChampionAttack( &(*big_monster), &(*champion) );
 			}
-			else if ( (*little_monster1).hp > 0 ) //if young lizard 1 is alive atk him
+			else if ( (*little_monster1).hp > 0 ) //if the first young lizard is alive atk him
 			{			
 				ChampionAttack( &(*little_monster1), &(*champion) );
 			}
-			else if ( (*little_monster2).hp > 0 ) //if young lizard 2 is alive atk him
+			else if ( (*little_monster2).hp > 0 ) //if the second young lizard is alive atk him
 			{
 				ChampionAttack( &(*little_monster2), &(*champion) );
 			}
