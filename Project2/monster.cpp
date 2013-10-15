@@ -39,9 +39,7 @@ void monster::BecomeAncientGolem() //Gives the monster object Ancient Golem stat
 }
 
 void monster::BecomeYoungLizard() //Gives the monster object young lizard stats
-{//add a 'number,' check if a young lizard has already been created, if it has then increment the number and
-	//use that number to assign a unqiue ID to the lizard. name=concatenation of YoungLizard and number
-	//consider pointers to check object existence
+{
 	name="YoungLizard";
 	hp=400;
 	range=500;
