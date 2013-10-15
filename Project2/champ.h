@@ -9,6 +9,7 @@ class champ : public unit
 {
 public:
 	//include function prototypes and stats here
+	
 	//functions
 	void CreateCheck(); //Print statement to test functionality
 	void TestStats(); //Gives the champ easily usable stats
@@ -17,21 +18,13 @@ public:
 	void CheckExp();
 
 	//variables
-	//float hp;
 	float hp5;
 	int mp;
 	float mp5;
-	//int mp;
-	//float mp5;
-	//int range;
-	//float dmg;
-	//float as;
-	//float armor;
-	//float mr;
-	//float ms;
 	int crit_bonus;
 	float exp;
 	int level;
+	
 	//level up stats
 	float hp_per_lvl;
 	float hp5_per_lvl;
