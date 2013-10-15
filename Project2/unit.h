@@ -10,6 +10,7 @@ class unit
 public:
 	//put functions here...
 	void placeholder();
+	
 	//stats shared by both jungle minions and champions
 	string name;
 	float hp;
