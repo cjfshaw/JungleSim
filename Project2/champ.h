@@ -19,7 +19,8 @@ public:
 
 	//variables
 	float hp5;
-	int mp;
+	int max_mp;
+	int current_mp;
 	float mp5;
 	int crit_bonus;
 	float exp;

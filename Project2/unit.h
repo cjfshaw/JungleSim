@@ -13,7 +13,8 @@ public:
 	
 	//stats shared by both jungle minions and champions
 	string name;
-	float hp;
+	float max_hp;
+	float current_hp;
 	int range;
 	float dmg;
 	float as;

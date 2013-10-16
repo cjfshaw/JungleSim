@@ -17,9 +17,11 @@ void champ::CreateCheck() //Print statement to test functionality
 void champ::TestStats()  //Currently using beefy ass nunu stats w red pot + consumed (not killed) golem
 { //use this to 'set' later
 	name="Nunu";
-	hp=3000;
+	max_hp=3000;
+	current_hp=3000;
 	hp5=50;
-	mp=1000;
+	max_mp=1000;
+	current_mp=1000;
 	mp5=50;
 	range=600;
 	dmg=73;
@@ -44,11 +46,11 @@ void champ::TestStats()  //Currently using beefy ass nunu stats w red pot + cons
 void champ::LevelUp() //upgrade the champ's stats to the ones at the next level
 {
 	level++;
-	hp=hp+hp_per_lvl;//need to make current hp and max hp to account for this
+	current_hp=current_hp+hp_per_lvl;//need to make current hp and max hp to account for this
 	//if (hp + hp_per_lvl) < max hp then hp = hp + hp_per_level, else hp=max_hp
 	//same for mp
 	hp5=hp5+hp5_per_lvl;
-	mp=mp+mp_per_lvl;
+	current_mp=current_mp+mp_per_lvl;
 	mp5=mp5+mp5_per_lvl;
 	dmg=dmg+dmg_per_lvl;
 	as=as+as_per_lvl;//TODO: CHANGE HOW LEVEL UP DOES AS (AS = AS * AS_PER_LVL) AS_PER_LEVEL SHOULD BE A % VALUE (EX: 2)

@@ -1,7 +1,7 @@
 #include "stdlib.h"
 #include <iostream>
 #include <ctime> //for timer
-//#include <Windows.h> //for sleep
+#include <Windows.h> //for sleep
 
 #include "champ.h"
 #include "monster.h"
@@ -10,12 +10,12 @@ using namespace std;
 
 void ChampionAttack(monster *target, champ *attacker)
 {
-	(*target).hp=(*target).hp-( (*attacker).dmg * ( 100 / (100 + (*target).armor ) ) );
+	(*target).current_hp=(*target).current_hp-( (*attacker).dmg * ( 100 / (100 + (*target).armor ) ) );
 	cout << (*attacker).name << " attacks" << endl;
-	cout << (*target).name << " health " << (*target).hp << endl;
+	cout << (*target).name << " health " << (*target).current_hp << endl;
 	(*attacker).counter++;
 	
-	if ( (*target).hp <= 0 )
+	if ( (*target).current_hp <= 0 )
 	{
 		cout << (*target).name << " is dead." << endl;
 		(*attacker).exp = (*attacker).exp + (*target).exp_given;
@@ -25,9 +25,9 @@ void ChampionAttack(monster *target, champ *attacker)
 
 void MonsterAttack(champ *target, monster *attacker)
 {
-	(*target).hp = (*target).hp - ( (*attacker).dmg * ( 100 / (100 + (*target).armor ) ) );
+	(*target).current_hp = (*target).current_hp - ( (*attacker).dmg * ( 100 / (100 + (*target).armor ) ) );
 	cout << (*attacker).name << " attacks" << endl;
-	cout << (*target).name << " health " << (*target).hp << endl;
+	cout << (*target).name << " health " << (*target).current_hp << endl;
 	(*attacker).counter++;
 }
 
@@ -42,37 +42,37 @@ void FightCamp(champ *champion, monster *big_monster, monster *little_monster1, 
 	float young_atk_time = (1/(*little_monster1).as)*1000;
 	float ancient_atk_time = (1/(*little_monster2).as)*1000;
 
-	while( (*champion).hp > 0 && ((*big_monster).hp > 0 || (*little_monster1).hp > 0 || (*little_monster2).hp > 0 ) ) 
+	while( (*champion).current_hp > 0 && ((*big_monster).current_hp > 0 || (*little_monster1).current_hp > 0 || (*little_monster2).current_hp > 0 ) ) 
 	{//this loop has the champion fighting the Elder Lizard camp
-	//does not account for red buff or hp/mp sigil yet
+	//does not account for red buff or current_hp/mp sigil yet
 		elapsed_time = clock() - (*timex) / (float) CLOCKS_PER_SEC; 
 		elapsed_time2 = (clock() - (*timex) ) / (float) CLOCKS_PER_SEC; 
 
 		if ( elapsed_time > champ_atk_time*(*champion).counter )
 		{
 			cout << "Elapsed time: " << elapsed_time << endl;
-			if ( (*big_monster).hp > 0 ) //if the large monster is alive atk him
+			if ( (*big_monster).current_hp > 0 ) //if the large monster is alive atk him
 			{	
 				ChampionAttack( &(*big_monster), &(*champion) );
 			}
-			else if ( (*little_monster1).hp > 0 ) //if the first young lizard is alive atk him
+			else if ( (*little_monster1).current_hp > 0 ) //if the first young lizard is alive atk him
 			{			
 				ChampionAttack( &(*little_monster1), &(*champion) );
 			}
-			else if ( (*little_monster2).hp > 0 ) //if the second young lizard is alive atk him
+			else if ( (*little_monster2).current_hp > 0 ) //if the second young lizard is alive atk him
 			{
 				ChampionAttack( &(*little_monster2), &(*champion) );
 			}
 		}
-		if ( (elapsed_time > elder_atk_time*(*big_monster).counter) && (*big_monster).hp > 0 ) //elder lizard attacking champ
+		if ( (elapsed_time > elder_atk_time*(*big_monster).counter) && (*big_monster).current_hp > 0 ) //elder lizard attacking champ
 		{//refactor
 			MonsterAttack( &(*champion), &(*big_monster) );
 		}
-		if ( (elapsed_time > young_atk_time*(*little_monster1).counter) && (*little_monster1).hp > 0 ) //young lizard 1 attacking champ
+		if ( (elapsed_time > young_atk_time*(*little_monster1).counter) && (*little_monster1).current_hp > 0 ) //young lizard 1 attacking champ
 		{//refactor
 			MonsterAttack( &(*champion), &(*little_monster1) );
 		}
-		if ( (elapsed_time > young_atk_time*(*little_monster2).counter) && (*little_monster2).hp > 0 ) //young lizard 2 attacking champ
+		if ( (elapsed_time > young_atk_time*(*little_monster2).counter) && (*little_monster2).current_hp > 0 ) //young lizard 2 attacking champ
 		{//refactor
 			MonsterAttack( &(*champion), &(*little_monster2) );
 		}
