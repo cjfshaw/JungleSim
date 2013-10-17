@@ -17,22 +17,20 @@ The goal of this is to be high fidelity, which means that it is as accurate as p
 
 The latest version
 --------------------------------------------
-Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  The code has been refactored, but much of the functionalist remains in main.cpp.
+Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  The code has been refactored, but much of the functionality remains in main.cpp.  The comments and variable names have been updated.
 
 Latest problems
 --------------------------------------------
-The time it takes to fight both red and blue buff camps seems relatively accurate but it is not 100% accuracy.  The functions need to be updated, and so do the stats.  Names like "as" are not descriptive enough and need to be changed to something like "attack_speed."  Additionally find out how to use Visual Studio's autocomplete.  Goals (from Reamining Goals section) that must be completed for phase 1 to be finished are A, B, C, D, F.
+The time it takes to fight both red and blue buff camps seems relatively accurate but it is not 100% accurate.  Additionally find out how to use Visual Studio's autocomplete.  Goals (from Reamining Goals section) that must be completed for phase 1 to be finished are B, C, D, F.
 
 Remaining goals (not in order)
 --------------------------------------------
 
-A.) Update comments to detail what each process is doing
-
 B.) Account for start time (1:55) and time between camps (a 'wait' function that allows for hp/mp regen and minion levelups)
 
-C.) Add max hp, set limit on hp5 not going above max hp. (when current hp = max hp hp5 = 0?.  Think this might break levelup functionality)
+C.) Set limit on hp5 not going above max hp. (when current hp = max hp hp5 = 0?.  Think this might break levelup functionality)
 
-D.) Still need to account for items, runes, masteries, and abilities, timing, and regen, and proper damage ratios
+D.) Still need to account for items, runes, masteries, and abilities, timing, and regen.
 
 E.) Minions scaling over time, buff transfer, sigil (hp/mp from big minions) transfer
 
@@ -45,6 +43,8 @@ Overall design approach
 NOTE: The general philosophy for this design is to start with the aspects of the simulation that would apply to every champion, and then move onto the parts of the game that only apply to a subset of champions.  What this means is that there will be:
 
 1.) A pseudo-champion that can clear the jungle with all the appropriate calculations (gold, experience, hp5) and modifications (sigils, buffs).  With proper logging on ending stats.
+
+a.) Optimize phase 1 for maintainability.
 
 2.) Masteries included.
 
