@@ -7,80 +7,75 @@ using namespace std;
 
 #include "champ.h"
 
-void champ::CreateCheck() //Print statement to test functionality
-{
-	cout << "Champ is created.\n";
-}
+//create a constructor with (name) to populate champttack_speed like champ(attack_speedhe)
 
-//create a constructor with (name) to populate champs like champ(Ashe)
-
-void champ::TestStats()  //Currently using beefy ass nunu stats w red pot + consumed (not killed) golem
+void champ::PopulateChamp()  //Currently using beefy attack_speeds nunu stats w red pot + consumed (not killed) golem
 { //use this to 'set' later
 	name="Nunu";
-	max_hp=3000;
-	current_hp=3000;
-	hp5=50;
-	max_mp=1000;
-	current_mp=1000;
-	mp5=50;
+	max_health=3000;
+	current_health=3000;
+	health5=50;
+	max_mana=1000;
+	current_mana=1000;
+	mana5=50;
 	range=600;
-	dmg=73;
-	as=0.781;
-	crit_bonus=200;
+	damage=73;
+	attack_speed=0.781;
+	critical_bonus=200;
 	armor=100;
-	mr=100;
-	ms=300;
-	exp=0;
+	magic_resist=100;
+	movespeed=300;
+	experience=0;
 	level=1;
-	hp_per_lvl=100;
-	hp5_per_lvl=5;
-	mp_per_lvl=50;
-	mp5_per_lvl=5;
-	dmg_per_lvl=3.45;
-	as_per_lvl=0.0125;
+	health_per_lvl=100;
+	health5_per_lvl=5;
+	mana_per_lvl=50;
+	mana5_per_lvl=5;
+	damage_per_lvl=3.45;
+	attack_speed_per_lvl=0.0125;
 	armor_per_lvl=30;
-	mr_per_lvl=30;
+	magic_resist_per_lvl=30;
 	counter=1;
 }
 
 void champ::LevelUp() //upgrade the champ's stats to the ones at the next level
 {
 	level++;
-	current_hp=current_hp+hp_per_lvl;//need to make current hp and max hp to account for this
-	//if (hp + hp_per_lvl) < max hp then hp = hp + hp_per_level, else hp=max_hp
-	//same for mp
-	hp5=hp5+hp5_per_lvl;
-	current_mp=current_mp+mp_per_lvl;
-	mp5=mp5+mp5_per_lvl;
-	dmg=dmg+dmg_per_lvl;
-	as=as+as_per_lvl;//TODO: CHANGE HOW LEVEL UP DOES AS (AS = AS * AS_PER_LVL) AS_PER_LEVEL SHOULD BE A % VALUE (EX: 2)
+	current_health=current_health+health_per_lvl;//need to make current health and max health to account for this
+	//if (health + health_per_lvl) < max health then health = health + health_per_level, else health=max_health
+	//same for mana
+	health5=health5+health5_per_lvl;
+	current_mana=current_mana+mana_per_lvl;
+	mana5=mana5+mana5_per_lvl;
+	damage=damage+damage_per_lvl;
+	attack_speed=attack_speed+attack_speed_per_lvl;//TODO: CHANGE HOW LEVEL UP DOES attack_speed (attack_speed = attack_speed * attack_speed_PER_LVL) attack_speed_PER_LEVEL SHOULD BE A % VALUE (EX: 2)
 	armor=armor+armor_per_lvl;
-	mr=mr+mr_per_lvl;
-	cout << "Champion is level: " << level << endl;
+	magic_resist=magic_resist+magic_resist_per_lvl;
+	cout << "champion is level: " << level << endl;
 }
 
-void champ::CheckExp() // check if champ's experience is enough to level up, if it is use the level up function
+void champ::Checkexperience() // check if champ's experienceerience is enough to level up, if it is use the level up function
 {//TODO: VERIFY THIS WORKS FOR ALL LEVELS
 	int i;
-	int current_exp=0;
-	int cum_exp=0;
+	int current_experience=0;
+	int cum_experience=0;
 
 	if ( level < 18)
 	{
 		if ( level == 1)
 		{
-			current_exp = 280;
-			cum_exp = cum_exp + current_exp;
+			current_experience = 280;
+			cum_experience = cum_experience + current_experience;
 		}
 		else
 		{
 			for ( i=level+1; i>1; i--)
 			{
-				current_exp = 280 + ( 110 * (i-2) );
-				cum_exp = cum_exp + current_exp;
+				current_experience = 280 + ( 110 * (i-2) );
+				cum_experience = cum_experience + current_experience;
 			}
 		}
-		if ( exp >= cum_exp )
+		if ( experience >= cum_experience )
 		{
 			LevelUp();
 		}

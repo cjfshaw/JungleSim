@@ -13,15 +13,15 @@ public:
 	
 	//stats shared by both jungle minions and champions
 	string name;
-	float max_hp;
-	float current_hp;
+	float max_health;
+	float current_health;
 	int range;
-	float dmg;
-	float as;
+	float damage;
+	float attack_speed;
 	float armor;
-	float mr;
-	float ms;
-	int crit_chance;
+	float magic_resist;
+	float movespeed;
+	int critical_chance;
 	int counter;
 };
 

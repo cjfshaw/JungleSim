@@ -11,28 +11,26 @@ public:
 	//include function prototypes and stats here
 	
 	//functions
-	void CreateCheck(); //Print statement to test functionality
-	void TestStats(); //Gives the champ easily usable stats
-	void AutoAttack(); //Attack a monster
+	void PopulateChamp(); //Gives the champ eattack_speedily usable stats
 	void LevelUp();
-	void CheckExp();
+	void Checkexperience();
 
 	//variables
-	float hp5;
-	int max_mp;
-	int current_mp;
-	float mp5;
-	int crit_bonus;
-	float exp;
+	float health5;
+	int max_mana;
+	int current_mana;
+	float mana5;
+	int critical_bonus;
+	float experience;
 	int level;
 	
 	//level up stats
-	float hp_per_lvl;
-	float hp5_per_lvl;
-	int mp_per_lvl;
-	float mp5_per_lvl;
-	float dmg_per_lvl;
-	float as_per_lvl;
+	float health_per_lvl;
+	float health5_per_lvl;
+	int mana_per_lvl;
+	float mana5_per_lvl;
+	float damage_per_lvl;
+	float attack_speed_per_lvl;
 	float armor_per_lvl;
-	float mr_per_lvl;
+	float magic_resist_per_lvl;
 };
