@@ -16,7 +16,8 @@ public:
 	void Checkexperience();
 
 	//variables
-	float health5;
+	float health_regeneration;
+	float mana_regeneration;
 	int max_mana;
 	int current_mana;
 	float mana5;
@@ -25,10 +26,10 @@ public:
 	int level;
 	
 	//level up stats
-	float health_per_lvl;
+	float health_regeneration_per_lvl;
 	float health5_per_lvl;
 	int mana_per_lvl;
-	float mana5_per_lvl;
+	float mana_regeneration_per_lvl;
 	float damage_per_lvl;
 	float attack_speed_per_lvl;
 	float armor_per_lvl;
