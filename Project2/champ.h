@@ -11,7 +11,7 @@ public:
 	//include function prototypes and stats here
 	
 	//functions
-	void PopulateChamp(); //Gives the champ eattack_speedily usable stats
+	void PopulateChamp(); //Gives the champ easily usable stats
 	void LevelUp();
 	void Checkexperience();
 
@@ -21,6 +21,8 @@ public:
 	int max_mana;
 	int current_mana;
 	float mana5;
+	float attack_speed_bonus;
+	float modified_attack_speed;
 	int critical_bonus;
 	float experience;
 	int level;
@@ -31,7 +33,7 @@ public:
 	int mana_per_lvl;
 	float mana_regeneration_per_lvl;
 	float damage_per_lvl;
-	float attack_speed_per_lvl;
+	float base_attack_speed_per_lvl;
 	float armor_per_lvl;
 	float magic_resist_per_lvl;
 };

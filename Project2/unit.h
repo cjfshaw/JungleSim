@@ -17,7 +17,7 @@ public:
 	float current_health;
 	int range;
 	float damage;
-	float attack_speed;
+	float base_attack_speed;
 	float armor;
 	float magic_resist;
 	float movespeed;

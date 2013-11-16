@@ -7,20 +7,22 @@ using namespace std;
 
 #include "champ.h"
 
-//create a constructor with (name) to populate champttack_speed like champ(attack_speedhe)
+//create a constructor with (name) to populate champttack_speed like champ(base_attack_speedhe)
 
-void champ::PopulateChamp()  //Currently using beefy attack_speeds nunu stats w red pot + consumed (not killed) golem
+void champ::PopulateChamp()  //Currently using beefy base_attack_speeds nunu stats w red pot + consumed (not killed) golem
 { //use this to 'set' later
 	name="Nunu";
-	max_health=3000;
-	current_health=3000;
+	max_health=5000;
+	current_health=5000;
 	health_regeneration=50;
 	max_mana=1000;
 	current_mana=1000;
 	mana5=50;
 	range=600;
 	damage=73;
-	attack_speed=0.781;
+	base_attack_speed=0.625;
+	attack_speed_bonus = 0;
+	modified_attack_speed= base_attack_speed + ( base_attack_speed * ( ( base_attack_speed_per_lvl * (level-1) ) + attack_speed_bonus ) - base_attack_speed );
 	critical_bonus=200;
 	armor=100;
 	magic_resist=100;
@@ -32,7 +34,7 @@ void champ::PopulateChamp()  //Currently using beefy attack_speeds nunu stats w 
 	mana_per_lvl=50;
 	mana_regeneration_per_lvl=5;
 	damage_per_lvl=3.45;
-	attack_speed_per_lvl=0.0125;
+	base_attack_speed_per_lvl=1.0225;
 	armor_per_lvl=30;
 	magic_resist_per_lvl=30;
 	counter=1;
@@ -48,7 +50,7 @@ void champ::LevelUp() //upgrade the champ's stats to the ones at the next level
 	current_mana=current_mana+mana_per_lvl;
 	mana_regeneration=mana_regeneration+mana_regeneration_per_lvl;
 	damage=damage+damage_per_lvl;
-	attack_speed=attack_speed+attack_speed_per_lvl;//TODO: CHANGE HOW LEVEL UP DOES attack_speed (attack_speed = attack_speed * attack_speed_PER_LVL) attack_speed_PER_LEVEL SHOULD BE A % VALUE (EX: 2)
+	base_attack_speed=base_attack_speed * base_attack_speed_per_lvl;
 	armor=armor+armor_per_lvl;
 	magic_resist=magic_resist+magic_resist_per_lvl;
 	cout << "champion is level: " << level << endl;

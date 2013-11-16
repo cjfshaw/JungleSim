@@ -39,10 +39,10 @@ void Fightcamp(champ *champion, monster *big_monster, monster *little_monster1, 
 	float elapsed_time;
 	//float elapsed_time2;
 
-	float champ_atk_time = (1/(*champion).attack_speed)*1000;
-	float elder_atk_time = (1/(*big_monster).attack_speed)*1000;
-	float young_atk_time = (1/(*little_monster1).attack_speed)*1000;
-	float ancient_atk_time = (1/(*little_monster2).attack_speed)*1000;
+	float champ_atk_time = (1/(*champion).base_attack_speed)*1000;
+	float elder_atk_time = (1/(*big_monster).base_attack_speed)*1000;
+	float young_atk_time = (1/(*little_monster1).base_attack_speed)*1000;
+	float ancient_atk_time = (1/(*little_monster2).base_attack_speed)*1000;
 
 	while( (*champion).current_health > 0 && ((*big_monster).current_health > 0 || (*little_monster1).current_health > 0 || (*little_monster2).current_health > 0 ) ) 
 	{
@@ -95,10 +95,10 @@ void Fightcamp2(champ *champion, monster *big_monster, monster *little_monster1,
 	//float elapsed_time;
 	//float elapsed_time2;
 
-	float champ_atk_time = (1/(*champion).attack_speed)*1000;
-	float elder_atk_time = (1/(*big_monster).attack_speed)*1000;
-	float young_atk_time = (1/(*little_monster1).attack_speed)*1000;
-	float ancient_atk_time = (1/(*little_monster2).attack_speed)*1000;
+	float champ_atk_time = (1/(*champion).base_attack_speed)*1000;
+	float elder_atk_time = (1/(*big_monster).base_attack_speed)*1000;
+	float young_atk_time = (1/(*little_monster1).base_attack_speed)*1000;
+	float ancient_atk_time = (1/(*little_monster2).base_attack_speed)*1000;
 
 	while( (*champion).current_health > 0 && ((*big_monster).current_health > 0 || (*little_monster1).current_health > 0 || (*little_monster2).current_health > 0 ) ) 
 	{
@@ -166,6 +166,11 @@ void Regeneration(champ *champion, float *elapsed_time)
 	}
 }
 
+void KeepTime( clock_t time, float time_difference )
+{
+	time_difference = clock() - (time) / (float) CLOCKS_PER_SEC;
+}
+
 int main()
 {
 	//move 'timer' outside of FightCamp, make it an input - not working right now
@@ -199,15 +204,19 @@ int main()
 	YoungLizard3.BecomeYoungLizard();
 	YoungLizard4.BecomeYoungLizard();
 
-	//INITIALIZE AND START THE SIMULATION'S CLOCK
+	bool MonstersAlive = true;
+
+	//INITIALIZE THE SIMULATION'S CLOCK
 	clock_t time;
 	time = clock();
 
 	float new_elapsed_time;
-	new_elapsed_time = clock() - (time) / (float) CLOCKS_PER_SEC;
+	//new_elapsed_time = clock() - (time) / (float) CLOCKS_PER_SEC;
 	
+	thread time_thread( KeepTime, time, new_elapsed_time );
+
 	//FIGHT THE JUNGLE camps
-	//TODO: Make this interchangeable battack_speeded on used input, whether you start blue or red.
+	//TODO: Make this interchangeable based on user input, whether you start blue or red.
 	Fightcamp( &hero, &ElderLizard, &YoungLizard1, &YoungLizard2, &time );
 
 	//Fightcamp2( &hero, &ElderLizard, &YoungLizard1, &YoungLizard2, &new_elapsed_time );
@@ -217,6 +226,31 @@ int main()
 	//Elder and before AncientGolem.  Eliminate some text output or pipe to text file to verify.
 
 	Fightcamp( &hero, &AncientGolem, &YoungLizard3, &YoungLizard4, &time );
+
+	while( MonstersAlive )
+	{//need to have the timer constantly updating in here and have the Fightcamp threads run off this timer...
+
+		time_thread( KeepTime, time, new_elapsed_time );
+
+		if ( YoungLizard4.current_health > 0 )
+		{
+			MonstersAlive = false;
+		}
+		else
+		{
+			MonstersAlive = true;
+		}
+	}
+
+
+
+
+
+
+
+
+
+	time_thread.join();
 
 	std::cin.get();//WAIT SO THE PROGRAM DOESN'T EXIT AUTOMATICALLY
 	return 0;
