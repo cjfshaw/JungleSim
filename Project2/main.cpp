@@ -204,7 +204,7 @@ int main()
 	YoungLizard3.BecomeYoungLizard();
 	YoungLizard4.BecomeYoungLizard();
 
-	bool MonstersAlive = true;
+	//bool MonstersAlive = true;
 
 	//INITIALIZE THE SIMULATION'S CLOCK
 	clock_t time;
@@ -213,7 +213,7 @@ int main()
 	float new_elapsed_time;
 	//new_elapsed_time = clock() - (time) / (float) CLOCKS_PER_SEC;
 	
-	thread time_thread( KeepTime, time, new_elapsed_time );
+	//thread time_thread( KeepTime, time, new_elapsed_time );
 
 	//FIGHT THE JUNGLE camps
 	//TODO: Make this interchangeable based on user input, whether you start blue or red.
@@ -227,7 +227,7 @@ int main()
 
 	Fightcamp( &hero, &AncientGolem, &YoungLizard3, &YoungLizard4, &time );
 
-	while( MonstersAlive )
+	/*while( MonstersAlive )
 	{//need to have the timer constantly updating in here and have the Fightcamp threads run off this timer...
 
 		time_thread( KeepTime, time, new_elapsed_time );
@@ -240,7 +240,7 @@ int main()
 		{
 			MonstersAlive = true;
 		}
-	}
+	}*/
 
 
 
