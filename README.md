@@ -17,14 +17,19 @@ The goal of this is to be high fidelity, which means that it is as accurate as p
 
 The latest version
 --------------------------------------------
-Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  The code has been refactored, but much of the functionality remains in main.cpp.  The comments and variable names have been updated.
+Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  The code has been refactored, but much of the functionality remains in main.cpp.  The comments and variable names have been updated.  The current code does not account for preseason 4 changes.
 
 Latest problems
 --------------------------------------------
-The time it takes to fight both red and blue buff camps seems relatively accurate but it is not 100% accurate.  Additionally find out how to use Visual Studio's autocomplete.  Goals (from Reamining Goals section) that must be completed for phase 1 to be finished are B, C, D, F.
+The time it takes to fight both red and blue buff camps seems relatively accurate but it is not 100% accurate.  Additionally find out how to use Visual Studio's autocomplete.  Goals (from Reamining Goals section) that must be completed for phase 1 to be finished are A, B, C, E, D, F.
 
 Remaining goals (not in order)
 --------------------------------------------
+
+A.) CLEAN UP THE CODE.
+	a.) Bring unit, monster, and champion classes in line with good coding practice.  Change data types and functions from public to private or protected; combined with this, create the appropriate get() and set() functions and replace the current data modifications with them.
+	b.) Clearly define functionality between classes and functions.  Remove "create younglizard" etc and move it into a factory class.  Move out other functionality, like level up() and checkExperience() functionality, as well.
+	c.) Use prototyping to make main easier to understand.
 
 B.) Account for start time (1:55) and time between camps (a 'wait' function that allows for hp/mp regen and minion levelups)
 
