@@ -32,7 +32,7 @@ A.) CLEAN UP THE CODE.
 
 	b.) Clearly define functionality between classes and functions.  Remove "create younglizard" etc and move it into a factory class.  Move out other functionality, like level up() and checkExperience() functionality, as well.
 
-	c.) Use prototyping to make main easier to understand.
+	c. DONE ) Use prototyping to make main easier to understand.
 	d.) Multiple files for things like elder lizard young lizard etc for factory class use.  Possibly change this to a database structure later.
 
 B.) Account for start time (1:55) and time between camps (a 'wait' function that allows for hp/mp regen and minion levelups)
