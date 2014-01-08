@@ -28,8 +28,8 @@ Remaining goals (not in order)
 
 A.) CLEAN UP THE CODE.
 
-	a.) Bring unit, monster, and champion classes in line with good coding practice.  Change data types and functions from public to private or protected; combined with this, create the appropriate get() and set() functions and replace the current data modifications with them.
-
+	a. DONE ) Bring unit, monster, and champion classes in line with good coding practice.  Change data types and functions from public to private or protected; combined with this, create the appropriate get() and set() functions and replace the current data modifications with them.
+	NOTE: THIS DID BREAK FUNCTIONALITY - NEED TO DEBUG TONIGHT
 	b.) Clearly define functionality between classes and functions.  Remove "create younglizard" etc and move it into a factory class.  Move out other functionality, like level up() and checkExperience() functionality, as well.
 
 	c. DONE ) Use prototyping to make main easier to understand.
