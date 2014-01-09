@@ -10,7 +10,7 @@ using namespace std;
 class monsterfactory
 {
 public:
-	monster CreateElderLizard(monster new_monster);
+	monster * CreateElderLizard(monster new_monster);
 };
 
 #endif
