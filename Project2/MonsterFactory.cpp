@@ -1,7 +1,9 @@
 #include "monsterfactory.h"
 
-monster monsterfactory::CreateElderLizard(monster new_monster)
+monster monsterfactory::CreateElderLizard()
 {
+	monster * new_monster = new monster();
+	
 	new_monster.set_name("ElderLizard");
 	new_monster.set_max_health(1400);
 	new_monster.set_current_health(1400);
