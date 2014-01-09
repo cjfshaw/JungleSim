@@ -81,15 +81,25 @@ int main()
 	
 	//Monsterfactory MFactory;
 
+<<<<<<< HEAD
 	Monster ElderLizard;
 	Monster YoungLizard1;
 	Monster YoungLizard2;
+=======
+	monster * ElderLizard;
+	monster YoungLizard1;
+	monster YoungLizard2;
+>>>>>>> 8a5b312df82212a0b1c189d242676aebf0e25e86
 
 	Monster AncientGolem;
 	Monster YoungLizard3;
 	Monster YoungLizard4;
 
+<<<<<<< HEAD
 	//MFactory.CreateElderLizard(ElderLizard);
+=======
+	ElderLizard = MFactory.CreateElderLizard();
+>>>>>>> 8a5b312df82212a0b1c189d242676aebf0e25e86
 
 	//POPULATE ChampION AND JUNGLE MonsterS WITH PROPER STATS
 	hero.PopulateChamp();
