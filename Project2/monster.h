@@ -1,9 +1,9 @@
-#ifndef MONSTER_H
-#define MONSTER_H
+#ifndef Monster_H
+#define Monster_H
 
 #include "unit.h"
 
-class monster : public unit
+class Monster : public unit
 {
 private:
 	float experience_given;
@@ -11,13 +11,13 @@ public:
 	//include function prototypes and stats here
 	
 	//functions
-	void BecomeElderLizard(); //Gives the monster object Elder Lizard stats
-	void BecomeAncientGolem(); //Gives the monster object Ancient Golem stats
-	void BecomeYoungLizard(); //Gives the monster object young lizard stats
+	void BecomeElderLizard(); //Gives the Monster object Elder Lizard stats
+	void BecomeAncientGolem(); //Gives the Monster object Ancient Golem stats
+	void BecomeYoungLizard(); //Gives the Monster object young lizard stats
 	//getters
-	float get_experience_given();
+	float getExperienceGiven();
 	//setters
-	void set_experience_given(float new_experience_given);
+	void setExperienceGiven(float new_experience_given);
 };
 
 #endif

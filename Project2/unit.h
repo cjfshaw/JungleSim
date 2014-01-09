@@ -23,30 +23,30 @@ protected:
 public:
 	//put functions here...
 	//getters
-	string get_name();
-	float get_max_health();
-	float get_current_health();
-	int get_range();
-	float get_damage();
-	float get_base_attack_speed();
-	float get_armor();
-	float get_magic_resist();
-	float get_movespeed();
-	int get_critical_chance();
-	int get_counter();
+	string getName();
+	float getMaxHealth();
+	float getCurrentHealth();
+	int getRange();
+	float getDamage();
+	float getBaseAttackSpeed();
+	float getArmor();
+	float getMagicResist();
+	float getMovespeed();
+	int getCriticalChance();
+	int getCounter();
 
 	//setters
-	void set_name(string new_name);
-	void set_max_health(float new_max_health);
-	void set_current_health(float new_current_health);
-	void set_range(int new_range);
-	void set_damage(float new_damage);
-	void set_base_attack_speed(float new_base_attack_speed);
-	void set_armor(float new_armor);
-	void set_magic_resist(float new_magic_resist);
-	void set_movespeed(float new_movespeed);
-	void set_critical_chance(int new_critical_chance);
-	void set_counter(int new_counter);
+	void setName(string new_name);
+	void setMaxHealth(float new_max_health);
+	void setCurrentHealth(float new_current_health);
+	void setRange(int new_range);
+	void setDamage(float new_damage);
+	void setBaseAttackSpeed(float new_base_attack_speed);
+	void setArmor(float new_armor);
+	void setMagicResist(float new_magic_resist);
+	void setMovespeed(float new_movespeed);
+	void setCriticalChance(int new_critical_chance);
+	void setCounter(int new_counter);
 };
 
 #endif

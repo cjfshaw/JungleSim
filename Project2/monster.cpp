@@ -1,21 +1,21 @@
 #include <iostream>
 using namespace std;
 
-#include "monster.h"
+#include "Monster.h"
 
 //getters
-float monster::get_experience_given()
+float Monster::getExperienceGiven()
 {
 	return experience_given;
 }
 
 //setters
-void monster::set_experience_given(float new_experience_given)
+void Monster::setExperienceGiven(float new_experience_given)
 {
 	experience_given = new_experience_given;
 }
 
-void monster::BecomeElderLizard() //Gives the monster object Elder Lizard stats
+void Monster::BecomeElderLizard() //Gives the Monster object Elder Lizard stats
 {
 	name="ElderLizard";
 	max_health=1400;
@@ -29,7 +29,7 @@ void monster::BecomeElderLizard() //Gives the monster object Elder Lizard stats
 	counter=1;
 }
 
-void monster::BecomeAncientGolem() //Gives the monster object Ancient Golem stats
+void Monster::BecomeAncientGolem() //Gives the Monster object Ancient Golem stats
 {
 	name="AncientGolem";
 	max_health=1400;
@@ -43,7 +43,7 @@ void monster::BecomeAncientGolem() //Gives the monster object Ancient Golem stat
 	counter=1;
 }
 
-void monster::BecomeYoungLizard() //Gives the monster object young lizard stats
+void Monster::BecomeYoungLizard() //Gives the Monster object young lizard stats
 {
 	name="YoungLizard";
 	max_health=400;

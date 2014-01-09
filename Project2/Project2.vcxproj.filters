@@ -21,9 +21,6 @@
     <ClInclude Include="monster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="unit.h">
       <Filter>Header Files</Filter>
     </ClInclude>

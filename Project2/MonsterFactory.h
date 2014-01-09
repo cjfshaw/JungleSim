@@ -1,16 +1,16 @@
-#ifndef MONSTERFACTORY_H
-#define MONSTERFACTORY_H
+#ifndef MonsterFACTORY_H
+#define MonsterFACTORY_H
 
 #include <string>
 
-#include "monster.h"
+#include "Monster.h"
 
 using namespace std;
 
-class monsterfactory
+class Monsterfactory
 {
 public:
-	monster CreateElderLizard(monster new_monster);
+	Monster CreateElderLizard(Monster new_Monster);
 };
 
 #endif

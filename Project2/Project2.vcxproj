@@ -66,7 +66,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="champ.h" />
-    <ClInclude Include="Header.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="MonsterFactory.h" />
     <ClInclude Include="unit.h" />
