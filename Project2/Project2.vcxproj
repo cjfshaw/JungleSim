@@ -68,12 +68,14 @@
     <ClInclude Include="champ.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="monster.h" />
+    <ClInclude Include="MonsterFactory.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="champ.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
+    <ClCompile Include="MonsterFactory.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

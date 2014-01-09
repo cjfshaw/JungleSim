@@ -1,11 +1,19 @@
-/*
-Need a default constructor
-*/
-
 #include <iostream>
 using namespace std;
 
 #include "monster.h"
+
+//getters
+float monster::get_experience_given()
+{
+	return experience_given;
+}
+
+//setters
+void monster::set_experience_given(float new_experience_given)
+{
+	experience_given = new_experience_given;
+}
 
 void monster::BecomeElderLizard() //Gives the monster object Elder Lizard stats
 {

@@ -5,6 +5,7 @@
 
 #include "champ.h"
 #include "monster.h"
+#include "MonsterFactory.h"
 
 using namespace std;
 
@@ -78,6 +79,8 @@ int main()
 	//GENERATE CHAMPION AND GOLEM/LIZARD camps
 	champ hero;
 	
+	monsterfactory MFactory;
+
 	monster ElderLizard;
 	monster YoungLizard1;
 	monster YoungLizard2;
@@ -86,10 +89,12 @@ int main()
 	monster YoungLizard3;
 	monster YoungLizard4;
 
+	MFactory.CreateElderLizard(ElderLizard);
+
 	//POPULATE champION AND JUNGLE MONSTERS WITH PROPER STATS
 	hero.PopulateChamp();
 
-	ElderLizard.BecomeElderLizard();
+	//ElderLizard.BecomeElderLizard();
 	YoungLizard1.BecomeYoungLizard();
 	YoungLizard2.BecomeYoungLizard();
 
@@ -112,25 +117,25 @@ int main()
 
 void championAttack(monster *target, champ *attacker)
 { //This function has the champion attack a given target once.  It makes use of the Checkexperience function.
-	(*target).unit_set_current_health( (*target).unit_get_current_health()-( (*attacker).unit_get_damage() * ( 100 / (100 + (*target).unit_get_armor() ) ) ) );
-	cout << (*attacker).unit_get_name() << " attacks" << endl;
-	cout << (*target).unit_get_name() << " health " << (*target).unit_get_current_health() << endl;
-	(*attacker).unit_set_counter( (*attacker).unit_get_counter() + 1 );
+	(*target).set_current_health( (*target).get_current_health()-( (*attacker).get_damage() * ( 100 / (100 + (*target).get_armor() ) ) ) );
+	cout << (*attacker).get_name() << " attacks" << endl;
+	cout << (*target).get_name() << " health " << (*target).get_current_health() << endl;
+	(*attacker).set_counter( (*attacker).get_counter() + 1 );
 	
-	if ( (*target).unit_get_current_health() <= 0 )
+	if ( (*target).get_current_health() <= 0 )
 	{
-		cout << (*target).unit_get_name() << " is dead." << endl;
-		(*attacker).experience = (*attacker).experience + (*target).experience_given;
+		cout << (*target).get_name() << " is dead." << endl;
+		(*attacker).experience = (*attacker).experience + (*target).get_experience_given();
 		(*attacker).Checkexperience();
 	}
 }
 
 void MonsterAttack(champ *target, monster *attacker)
 { //This function has a given monster attack the champion once.
-	(*target).unit_set_current_health( (*target).unit_get_current_health() - ( (*attacker).unit_get_damage() * ( 100 / (100 + (*target).unit_get_armor() ) ) ) );
-	cout << (*attacker).unit_get_name() << " attacks" << endl;
-	cout << (*target).unit_get_name() << " health " << (*target).unit_get_current_health() << endl;
-	(*attacker).unit_set_counter( (*attacker).unit_get_counter() + 1 );
+	(*target).set_current_health( (*target).get_current_health() - ( (*attacker).get_damage() * ( 100 / (100 + (*target).get_armor() ) ) ) );
+	cout << (*attacker).get_name() << " attacks" << endl;
+	cout << (*target).get_name() << " health " << (*target).get_current_health() << endl;
+	(*attacker).set_counter( (*attacker).get_counter() + 1 );
 }
 
 void Fightcamp(champ *champion, monster *big_monster, monster *little_monster1, monster *little_monster2, clock_t *timex )
@@ -141,48 +146,48 @@ void Fightcamp(champ *champion, monster *big_monster, monster *little_monster1, 
 	float elapsed_time;
 	//float elapsed_time2;
 
-	float champ_atk_time = (1/(*champion).unit_get_base_attack_speed() )*1000;
-	float elder_atk_time = (1/(*big_monster).unit_get_base_attack_speed() )*1000;
-	float young_atk_time = (1/(*little_monster1).unit_get_base_attack_speed() )*1000;
-	float ancient_atk_time = (1/(*little_monster2).unit_get_base_attack_speed() )*1000;
+	float champ_atk_time = (1/(*champion).get_base_attack_speed() )*1000;
+	float elder_atk_time = (1/(*big_monster).get_base_attack_speed() )*1000;
+	float young_atk_time = (1/(*little_monster1).get_base_attack_speed() )*1000;
+	float ancient_atk_time = (1/(*little_monster2).get_base_attack_speed() )*1000;
 
-	while( (*champion).unit_get_current_health() > 0 && ((*big_monster).unit_get_current_health() > 0 || (*little_monster1).unit_get_current_health() > 0 || (*little_monster2).unit_get_current_health() > 0 ) ) 
+	while( (*champion).get_current_health() > 0 && ((*big_monster).get_current_health() > 0 || (*little_monster1).get_current_health() > 0 || (*little_monster2).get_current_health() > 0 ) ) 
 	{
 	//does not account for red buff or current_health/mana sigil yet
 		elapsed_time = clock() - (*timex) / (float) CLOCKS_PER_SEC; 
 		//elapsed_time2 = (clock() - (*timex) ) / (float) CLOCKS_PER_SEC; 
 
-		if ( elapsed_time > champ_atk_time*(*champion).unit_get_counter() )
+		if ( elapsed_time > champ_atk_time*(*champion).get_counter() )
 		{
 			cout << "Elapsed time: " << elapsed_time << endl;
-			if ( (*big_monster).unit_get_current_health() > 0 ) //if the large monster is alive attack him
+			if ( (*big_monster).get_current_health() > 0 ) //if the large monster is alive attack him
 			{	
 				championAttack( &(*big_monster), &(*champion) );
 			}
-			else if ( (*little_monster1).unit_get_current_health() > 0 ) //if the first young lizard is alive attack him
+			else if ( (*little_monster1).get_current_health() > 0 ) //if the first young lizard is alive attack him
 			{			
 				championAttack( &(*little_monster1), &(*champion) );
 			}
-			else if ( (*little_monster2).unit_get_current_health() > 0 ) //if the second young lizard is alive attack him
+			else if ( (*little_monster2).get_current_health() > 0 ) //if the second young lizard is alive attack him
 			{
 				championAttack( &(*little_monster2), &(*champion) );
 			}
 		}
-		if ( (elapsed_time > elder_atk_time*(*big_monster).unit_get_counter() ) && (*big_monster).unit_get_current_health() > 0 ) //if the large monster is alive, attack the champion
+		if ( (elapsed_time > elder_atk_time*(*big_monster).get_counter() ) && (*big_monster).get_current_health() > 0 ) //if the large monster is alive, attack the champion
 		{
 			MonsterAttack( &(*champion), &(*big_monster) );
 		}
-		if ( (elapsed_time > young_atk_time*(*little_monster1).unit_get_counter() ) && (*little_monster1).unit_get_current_health() > 0 ) //if the first small lizard is alive, attack the champion
+		if ( (elapsed_time > young_atk_time*(*little_monster1).get_counter() ) && (*little_monster1).get_current_health() > 0 ) //if the first small lizard is alive, attack the champion
 		{
 			MonsterAttack( &(*champion), &(*little_monster1) );
 		}
-		if ( (elapsed_time > young_atk_time*(*little_monster2).unit_get_counter() ) && (*little_monster2).unit_get_current_health() > 0 ) //if the second small lizard is alive, attack the champion
+		if ( (elapsed_time > young_atk_time*(*little_monster2).get_counter() ) && (*little_monster2).get_current_health() > 0 ) //if the second small lizard is alive, attack the champion
 		{
 			MonsterAttack( &(*champion), &(*little_monster2) );
 		}
 	}
 
-	cout << (*big_monster).unit_get_name() << " camp DEFEATED" << endl;
+	cout << (*big_monster).get_name() << " camp DEFEATED" << endl;
 
 	cout << "Elapsed time: " << elapsed_time << endl;
 	//cout << "Elapsed time2: " << elapsed_time2 << endl;

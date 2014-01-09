@@ -1,12 +1,12 @@
-#include "unit.h"
+#ifndef MONSTER_H
+#define MONSTER_H
 
-//header for monster
-/*
-Need a default constructor
-*/
+#include "unit.h"
 
 class monster : public unit
 {
+private:
+	float experience_given;
 public:
 	//include function prototypes and stats here
 	
@@ -14,7 +14,10 @@ public:
 	void BecomeElderLizard(); //Gives the monster object Elder Lizard stats
 	void BecomeAncientGolem(); //Gives the monster object Ancient Golem stats
 	void BecomeYoungLizard(); //Gives the monster object young lizard stats
-	 
-	//variables
-	float experience_given;
+	//getters
+	float get_experience_given();
+	//setters
+	void set_experience_given(float new_experience_given);
 };
+
+#endif

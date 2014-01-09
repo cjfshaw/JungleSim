@@ -1,3 +1,6 @@
+#ifndef CHAMP_H
+#define CHAMP_H
+
 #include "unit.h"
 
 //header for champ.cpp
@@ -37,3 +40,5 @@ public:
 	float armor_per_lvl;
 	float magic_resist_per_lvl;
 };
+
+#endif
