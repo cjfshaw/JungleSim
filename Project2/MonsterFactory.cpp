@@ -1,6 +1,6 @@
 #include "monsterfactory.h"
 
-monster monsterfactory::CreateElderLizard()
+monster * monsterfactory::CreateElderLizard()
 {
 	monster * new_monster = new monster();
 	
