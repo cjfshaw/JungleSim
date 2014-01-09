@@ -81,7 +81,7 @@ int main()
 	
 	monsterfactory MFactory;
 
-	monster ElderLizard;
+	monster * ElderLizard;
 	monster YoungLizard1;
 	monster YoungLizard2;
 
@@ -89,7 +89,7 @@ int main()
 	monster YoungLizard3;
 	monster YoungLizard4;
 
-	MFactory.CreateElderLizard(ElderLizard);
+	ElderLizard = MFactory.CreateElderLizard();
 
 	//POPULATE champION AND JUNGLE MONSTERS WITH PROPER STATS
 	hero.PopulateChamp();
