@@ -64,7 +64,7 @@ Remaining goals
 
 5.) Create ChampFactory with "Nunu" and allow it to create champs in an array.
 
-6.) Remove extraneous functionality from Champ class (Level-up, CheckExperience).
+6.) Move extraneous functionality from Champ class (Level-up, CheckExperience).  Unsure where to move it to, possibly create another class.
 
 7.) Add sigils and sigil transfer after a large minion is killed (assuming I can find info on how much hp/mp is transferred.)  This may require adding another identifier to minions to determine whether they are a large or small minion.
 
