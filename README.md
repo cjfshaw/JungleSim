@@ -3,9 +3,13 @@ JungleSim
 
 Repository for League Jungle Simulator
 
+
+
 What is it?
 --------------------------------------------
 Jungle Simulator is a program meant to simulate the starting route of junglers in League of Legends.  Specifically, it will simulate how a champion with a given setup (runes, masteries, starting items, etc) can reach ganking level (level 3).  The simulation will then log the champion's stats after he has finished the camp that gets him to level 3.  This logging will be used to compare one champion setup against another to determine which is the most efficient.
+
+
 
 Why does it exist?
 --------------------------------------------
@@ -15,6 +19,8 @@ There are two major reasons for this program.
 
 2.) This can be used as a tool for Riot Games.  A fully fleshed out simulation can help the Live team with balance.  The simulation can be used to determine the strength of all facets in a jungler's setup.  This contains but is not limited to: champions, runes, masteries, routes (individual camps), and items.
 
+
+
 How accurate is it?
 --------------------------------------------
 The goal of this is to be high fidelity, which means that it is as accurate as possible within reason.  In light of this goal, the simulation will include buffs (red and blue), sigils (hp/mp gain upon monster kill), monster strength growing over time, champion leveling, champion abilities and passives, masteries, runes, items, and every camp.  Essentially, it will contain all of the core mechanics of the game.
@@ -23,50 +29,91 @@ The simulation will not account for advanced mechanics, like wall-jumping with J
 
 For questions about any specific mechanics, please send a message to the owner of this repository, cjfshaw.
 
+
+
+Overall design approach
+---------------------------------------------
+The general design philosophy for this program is to start with core functionality necessary to make a low-fidelity simulation.  This low-fidelity simulation will be a psuedo-champion that is able to complete red and blue buff.  After the core functionality is implemented, the next goal is to add elements of the game that haven't been accounted for yet that also increase the fidelity of the simulation.  An example of this is adding regeneration.  The next step is to actually create a champion so that the program runs a basic, but accurate simulation of the LoL jungle.  At this point the code will be in alpha.  After that the program must be scripted to run multiple times with various different champion setups and then to compare the results.  Finally, the code will be expanded to account for multiple champions.  First only a few champions will be added, champions that expose the code to as many scenarios as possible.  Second, popular champions will be added.  Third, champions that expose the code to remaining edge cases will be added.  Eventually, advanced mechanics such as wall-jumping and leashing will be accounted for to make the program more accurately reflect how the jungle is played in reality.
+
+
+
 The latest version
 --------------------------------------------
 Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  The code has been refactored and reorganized to keep it from getting out of hand, but much of the functionality remains in main.cpp.
 
 The current code does not account for preseason 4 changes.  Advancement of the code has been slowed so that the code base could be 'cleaned up' before proceeding.
 
+
+
 Latest problems
 --------------------------------------------
 The MonsterFactory class needs to be fixed and updated and the ChampFactory class needs to be created.
 
-Remaining goals (not in order)
+
+
+Remaining goals
 --------------------------------------------
 
-1.) FINISH UPDATING THE README.MD
+1.) Debug MonsterFactory and affected files: MonsterFactory.h, MonsterFactory.cpp, main.cpp
 
-A.) CLEAN UP THE CODE.
+2.) Add unit testing.
 
-	a. DONE ) Bring unit, monster, and champion classes in line with good coding practice.  Change data types and functions from public to private or protected; combined with this, create the appropriate get() and set() functions and replace the current data modifications with them.
-	b.) Clearly define functionality between classes and functions.  Remove "create younglizard" etc and move it into a factory class.  Move out other functionality, like level up() and checkExperience() functionality, as well.
-	*NOTE: Factory class is created but needs to be debugged.  Other functionality need to be separated from the unit class and subclasses afterwards.*
-	c. DONE ) Use prototyping to make main easier to understand.
+3.) Expand MonsterFactory to include all monsters: Elder Lizard, Young Lizard, Ancient Golem, Big Golem, Little Golem, Large Wraith, Little Wraith, Wight.
 
-B.) Account for start time (1:55) and time between camps (a 'wait' function that allows for hp/mp regen and minion levelups)
+4.) Expand MonsterFactory functionality to create monsters in an array.  Useful for multiple-unit spell targeting later.
 
-C.) Set limit on hp5 not going above max hp. (when current hp = max hp hp5 = 0?.  Think this might break levelup functionality)
+5.) Create ChampFactory with "Nunu" and allow it to create champs in an array.
 
-D.) Still need to account for items, runes, masteries, and abilities, timing, and regen.
+6.) Remove extraneous functionality from Champ class (Level-up, CheckExperience).
 
-E.) Minions scaling over time, buff transfer, sigil (hp/mp from big minions) transfer
+7.) Add sigils and sigil transfer after a large minion is killed (assuming I can find info on how much hp/mp is transferred.)  This may require adding another identifier to minions to determine whether they are a large or small minion.
 
-F.) 335 ms (22s), 360 ms (20.5s), 375 ms (20s), 403 ms (19s)
+8.) Add regeneration functionality.  Do not allow current hp/mana to exceed maximum hp/mana.  This may need to be split into subtasks as the regeneration functionality may be larger than expected.
+
+9.) Add a game timer that shifts simulation time to in-game timer.
+
+10.) Account for correct spawning time with in-game timer (start timer at 1:55 not at 0).
+
+11.) Account for the time it takes to move between camps.  This means account for travel time between camps, which is variable based on which camp (distance) and the champion's movespeed (velocity).  May need to update champion to have some kind of 'location' field for dynamic travel-time calculations between camps.  May need to be split into subtasks.
+
+12.) Skip in-game timer ahead to account for times moved between camps, but do not have the simulation 'wait' for this movement to complete.  Example, it takes 10 seconds to get from blue buff to red buff; skip the in-game timer ahead by 10s and allow the champion to regenerate for that time in a 'burst regeneration.'  However, the simulation does not wait for the 10 seconds that it takes to move from red buff to blue buff. 
+
+May require an update to regeneration functionality so that it continues to regen while the simulation 'skips ahead' to the next camp.
+
+Note: MS and times gathered for red to blue buff are below.
+
+335 ms (22s), 360 ms (20.5s), 375 ms (20s), 403 ms (19s)
 
 		ms * time to get distance
-		
-Overall design approach
----------------------------------------------
-NOTE: The general philosophy for this design is to start with the aspects of the simulation that would apply to every champion, and then move onto the parts of the game that only apply to a subset of champions.  What this means is that there will be:
 
-1.) A pseudo-champion that can clear the jungle with all the appropriate calculations (gold, experience, hp5) and modifications (sigils, buffs).  With proper logging on ending stats.
+13.) Log stats after a run.  May need to include functionality that stops when a champion clears the camp that gives them level 3.
 
-2.) Runes included.
+14.) Add monster level ups (assuming I can find enough information of them).
 
-3.) Items included.
+15.) Add blue buff.  Cooldown reduction functionality may need to way until later.  It can possibly be done right away if there is an additional data member added to the champ class (cooldown reduction).
 
-4.) Masteries included.
+16.) Add red buff. May require that attack functionality is moved out of main.cpp to more easily account for both damage-over-time and different damage types (physical, magical, true).
 
-5.) Innate skills and learned abilities included.
+17.) Add popular/standard runes.
+
+18.) Add popular/standard items.
+
+19.) Add popular/standard masteries.
+
+20.) Add learned abilities. May need to do this in tandem with innate abilities and first real champion.
+
+21.) Add innate abilities. May need to do this in tandem with learned abilities and first real champion.
+
+22.) Add first real champion.
+
+This should be a champion who is relatively easy to code and exposes the code to very few additional paths in order to get a working prototype out faster.  Currently considering Fiora.
+
+23.) Add a script that runs multiple scenarios.
+
+24.) Parse the output log to compare results.
+
+
+
+Questions or comments?
+--------------------------------------------
+Feel free to send a message to the owner of this repository and codebase (cjfshaw) via github or email at cjfshaw@gmail.com.
