@@ -79,27 +79,17 @@ int main()
 	//GENERATE ChampION AND GOLEM/LIZARD camps
 	Champ hero;
 	
-	//Monsterfactory MFactory;
+	Monsterfactory MFactory;
 
-<<<<<<< HEAD
 	Monster ElderLizard;
 	Monster YoungLizard1;
 	Monster YoungLizard2;
-=======
-	monster * ElderLizard;
-	monster YoungLizard1;
-	monster YoungLizard2;
->>>>>>> 8a5b312df82212a0b1c189d242676aebf0e25e86
-
+	
 	Monster AncientGolem;
 	Monster YoungLizard3;
 	Monster YoungLizard4;
 
-<<<<<<< HEAD
-	//MFactory.CreateElderLizard(ElderLizard);
-=======
-	ElderLizard = MFactory.CreateElderLizard();
->>>>>>> 8a5b312df82212a0b1c189d242676aebf0e25e86
+	//Monster * ElderLizard = MFactory.CreateElderLizard();
 
 	//POPULATE ChampION AND JUNGLE MonsterS WITH PROPER STATS
 	hero.PopulateChamp();
