@@ -21,10 +21,10 @@
     <ClInclude Include="monster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
+    <ClInclude Include="unit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="unit.h">
+    <ClInclude Include="MonsterFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -39,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="unit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
