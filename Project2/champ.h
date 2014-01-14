@@ -31,7 +31,6 @@ public:
 	//include function prototypes and stats here
 	
 	//functions
-	void PopulateChamp(); //Gives the Champ easily usable stats
 	void LevelUp();
 	void Checkexperience();
 

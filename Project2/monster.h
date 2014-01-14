@@ -10,10 +10,6 @@ private:
 public:
 	//include function prototypes and stats here
 	
-	//functions
-	void BecomeElderLizard(); //Gives the Monster object Elder Lizard stats
-	void BecomeAncientGolem(); //Gives the Monster object Ancient Golem stats
-	void BecomeYoungLizard(); //Gives the Monster object young lizard stats
 	//getters
 	float getExperienceGiven();
 	//setters

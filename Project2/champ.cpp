@@ -9,37 +9,6 @@ using namespace std;
 
 //create a constructor with (name) to populate Champttack_speed like Champ(base_attack_speedhe)
 
-void Champ::PopulateChamp()  //Currently using beefy base_attack_speeds nunu stats w red pot + consumed (not killed) golem
-{ //use this to 'set' later
-	name="Nunu";
-	max_health=5000;
-	current_health=5000;
-	health_regeneration=50;
-	max_mana=1000;
-	current_mana=1000;
-	mana5=50;
-	range=600;
-	damage=73;
-	base_attack_speed=0.625;
-	attack_speed_bonus = 0;
-	modified_attack_speed= base_attack_speed + ( base_attack_speed * ( ( base_attack_speed_per_lvl * (level-1) ) + attack_speed_bonus ) - base_attack_speed );
-	critical_bonus=200;
-	armor=100;
-	magic_resist=100;
-	movespeed=300;
-	experience=0;
-	level=1;
-	health_regeneration_per_lvl=100;
-	health5_per_lvl=5;
-	mana_per_lvl=50;
-	mana_regeneration_per_lvl=5;
-	damage_per_lvl=3.45;
-	base_attack_speed_per_lvl=1.0225;
-	armor_per_lvl=30;
-	magic_resist_per_lvl=30;
-	counter=1;
-}
-
 void Champ::LevelUp() //upgrade the Champ's stats to the ones at the next level
 {
 	level++;

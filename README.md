@@ -47,7 +47,7 @@ The current code does not account for preseason 4 changes.  Advancement of the c
 
 Latest problems
 --------------------------------------------
-The MonsterFactory class needs to be fixed and updated and the ChampFactory class needs to be created.
+Level up functionality needs to be double checked.
 
 
 
