@@ -45,6 +45,12 @@ The current code does not account for preseason 4 changes.  Advancement of the c
 
 
 
+Next to-do
+--------------------------------------------
+Verify level-up functionality is working.  Place each monster camp into it's own array, use the arrays in later functions (like fightcamp) as opposed to using the individual objects.
+
+
+
 Latest problems
 --------------------------------------------
 Level up functionality needs to be double checked.
