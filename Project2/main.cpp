@@ -4,12 +4,11 @@
 #include <thread>
 
 #include "Champ.h"
+#include "ChampFactory.h"
 #include "Monster.h"
 #include "MonsterFactory.h"
 
 using namespace std;
-
-//SOME CHANGES TO CHECK WHETHER DEV BRANCH WORKS AND HOW
 
 void ChampionAttack(Monster *target, Champ *attacker);
 
@@ -77,39 +76,27 @@ int main()
 {
 	
 	//GENERATE ChampION AND GOLEM/LIZARD camps
-	Champ hero;
 	
+	Champfactory CFactory;
 	Monsterfactory MFactory;
 
-	Monster ElderLizard;
-	Monster YoungLizard1;
-	Monster YoungLizard2;
-	
-	Monster AncientGolem;
-	Monster YoungLizard3;
-	Monster YoungLizard4;
+	Champ * hero = CFactory.CreateNunu();
 
-	//Monster * ElderLizard = MFactory.CreateElderLizard();
-
-	//POPULATE ChampION AND JUNGLE MonsterS WITH PROPER STATS
-	hero.PopulateChamp();
-
-	ElderLizard.BecomeElderLizard();
-	YoungLizard1.BecomeYoungLizard();
-	YoungLizard2.BecomeYoungLizard();
-
-	AncientGolem.BecomeAncientGolem();
-	YoungLizard3.BecomeYoungLizard();
-	YoungLizard4.BecomeYoungLizard();
+	Monster * ElderLizard = MFactory.CreateElderLizard();
+	Monster * AncientGolem = MFactory.CreateAncientGolem();
+	Monster * YoungLizard1 = MFactory.CreateYoungLizard();
+	Monster * YoungLizard2 = MFactory.CreateYoungLizard();
+	Monster * YoungLizard3 = MFactory.CreateYoungLizard();
+	Monster * YoungLizard4 = MFactory.CreateYoungLizard();
 
 	//INITIALIZE THE SIMULATION'S CLOCK
 	clock_t time;
 	time = clock();
 
 	//FIGHT THE JUNGLE camps
-	Fightcamp( &hero, &ElderLizard, &YoungLizard1, &YoungLizard2, &time );
+	Fightcamp( hero, ElderLizard, YoungLizard1, YoungLizard2, &time );
 
-	Fightcamp( &hero, &AncientGolem, &YoungLizard3, &YoungLizard4, &time );
+	Fightcamp( hero, AncientGolem, YoungLizard3, YoungLizard4, &time );
 
 	std::cin.get();//WAIT SO THE PROGRAM DOESN'T EXIT AUTOMATICALLY
 	return 0;
