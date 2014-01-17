@@ -14,6 +14,8 @@ void ChampionAttack(Monster *target, Champ *attacker);
 
 void MonsterAttack(Champ *target, Monster *attacker);
 
+void Regeneration(Champ *Champion);
+
 void Fightcamp(Champ *Champion, Monster *big_Monster, Monster *little_Monster1, Monster *little_Monster2, clock_t *timex );
 
 /*void Fightcamp2(Champ *Champion, Monster *big_Monster, Monster *little_Monster1, Monster *little_Monster2, float *elapsed_time )
@@ -123,6 +125,35 @@ void MonsterAttack(Champ *target, Monster *attacker)
 	cout << (*attacker).getName() << " attacks" << endl;
 	cout << (*target).getName() << " health " << (*target).getCurrentHealth() << endl;
 	(*attacker).setCounter( (*attacker).getCounter() + 1 );
+}
+
+void Regeneration(Champ *Champion, clock_t *timex ) // think i need to make clockt into time to use elapsed_time, pointer issue currently
+{
+        if(1)//need to implement time loop that says "if 5 seconds have passed"
+        {
+                if( Champion->getCurrentHealth() <= Champion->getMaxHealth() ) //to make sure we don't go over max hp
+                {
+                        if( Champion->getCurrentHealth() <= ( Champion->getMaxHealth() - Champion->getHealthRegeneration() ) )
+                        {
+                                Champion->setCurrentHealth( Champion->getCurrentHealth() + Champion->getHealthRegeneration() );
+                        }
+                        else
+                        {
+                                Champion->setCurrentHealth( Champion->getMaxHealth() );
+                        }
+                }
+                if( Champion->getCurrentMana() <= Champion->getMaxMana() )
+                {
+                        if( Champion->getCurrentMana() <= ( Champion->getMaxMana() - Champion->getManaRegeneration() ) )
+                        {
+                                Champion->setCurrentMana( Champion->getCurrentMana() + Champion->getManaRegeneration() );
+                        }
+                        else
+                        {
+                                Champion->setCurrentMana( Champion->getMaxMana() );
+                        }
+                }
+        }
 }
 
 void Fightcamp(Champ *Champion, Monster *big_Monster, Monster *little_Monster1, Monster *little_Monster2, clock_t *timex )
