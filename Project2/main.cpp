@@ -95,9 +95,12 @@ int main()
 	clock_t time;
 	time = clock();
 
-	//FIGHT THE JUNGLE camps
-	Fightcamp( hero, ElderLizard, YoungLizard1, YoungLizard2, &time );
+	//float elapsed_time = clock() - (time) / (float) CLOCKS_PER_SEC;
 
+	//FIGHT THE JUNGLE camps
+	cout << "Starting red buff." << endl;
+	Fightcamp( hero, ElderLizard, YoungLizard1, YoungLizard2, &time );
+	cout << "Starting blue buff." << endl;
 	Fightcamp( hero, AncientGolem, YoungLizard3, YoungLizard4, &time );
 
 	std::cin.get();//WAIT SO THE PROGRAM DOESN'T EXIT AUTOMATICALLY
@@ -161,7 +164,7 @@ void Fightcamp(Champ *Champion, Monster *big_Monster, Monster *little_Monster1, 
 	//until there are no targets left in the camp.
 	//The first target attack is the strongest enemy.  This function uses the ChampionAttack and MonsterAttack functions.
 
-	float elapsed_time;
+	//float elapsed_time;
 	//float elapsed_time2;
 
 	float Champ_atk_time = (1/(*Champion).getBaseAttackSpeed() )*1000;
@@ -169,10 +172,12 @@ void Fightcamp(Champ *Champion, Monster *big_Monster, Monster *little_Monster1, 
 	float young_atk_time = (1/(*little_Monster1).getBaseAttackSpeed() )*1000;
 	float ancient_atk_time = (1/(*little_Monster2).getBaseAttackSpeed() )*1000;
 
+	//float elapsed_time = clock() - (*timex) / (float) CLOCKS_PER_SEC;
+
 	while( (*Champion).getCurrentHealth() > 0 && ((*big_Monster).getCurrentHealth() > 0 || (*little_Monster1).getCurrentHealth() > 0 || (*little_Monster2).getCurrentHealth() > 0 ) ) 
 	{
 	//does not account for red buff or current_health/mana sigil yet
-		elapsed_time = clock() - (*timex) / (float) CLOCKS_PER_SEC; 
+		float elapsed_time = clock() - (*timex) / (float) CLOCKS_PER_SEC; 
 		//elapsed_time2 = (clock() - (*timex) ) / (float) CLOCKS_PER_SEC; 
 
 		if ( elapsed_time > Champ_atk_time*(*Champion).getCounter() )
@@ -191,23 +196,26 @@ void Fightcamp(Champ *Champion, Monster *big_Monster, Monster *little_Monster1, 
 				ChampionAttack( &(*little_Monster2), &(*Champion) );
 			}
 		}
-		if ( (elapsed_time > elder_atk_time*(*big_Monster).getCounter() ) && (*big_Monster).getCurrentHealth() > 0 ) //if the large Monster is alive, attack the Champion
+		if ( ( elapsed_time > elder_atk_time*(*big_Monster).getCounter() ) && (*big_Monster).getCurrentHealth() > 0 ) //if the large Monster is alive, attack the Champion
 		{
 			MonsterAttack( &(*Champion), &(*big_Monster) );
 		}
-		if ( (elapsed_time > young_atk_time*(*little_Monster1).getCounter() ) && (*little_Monster1).getCurrentHealth() > 0 ) //if the first small lizard is alive, attack the Champion
+		if ( ( elapsed_time > young_atk_time*(*little_Monster1).getCounter() ) && (*little_Monster1).getCurrentHealth() > 0 ) //if the first small lizard is alive, attack the Champion
 		{
 			MonsterAttack( &(*Champion), &(*little_Monster1) );
 		}
-		if ( (elapsed_time > young_atk_time*(*little_Monster2).getCounter() ) && (*little_Monster2).getCurrentHealth() > 0 ) //if the second small lizard is alive, attack the Champion
+		if ( ( elapsed_time > young_atk_time*(*little_Monster2).getCounter() ) && (*little_Monster2).getCurrentHealth() > 0 ) //if the second small lizard is alive, attack the Champion
 		{
 			MonsterAttack( &(*Champion), &(*little_Monster2) );
 		}
+	
+		//cout << "Elapsed time: " << elapsed_time << endl;
+	
 	}
 
 	cout << (*big_Monster).getName() << " camp DEFEATED" << endl;
 
-	cout << "Elapsed time: " << elapsed_time << endl;
+	//cout << "Elapsed time: " << elapsed_time << endl;
 	//cout << "Elapsed time2: " << elapsed_time2 << endl;
 	cout << "Champ level: " << (*Champion).getLevel() << endl; //TODO: LOOK AT THIS SHOWING 1 WHEN LEVEL IS 2
 }

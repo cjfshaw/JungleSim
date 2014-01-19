@@ -12,7 +12,7 @@ using namespace std;
 void Champ::LevelUp() //upgrade the Champ's stats to the ones at the next level
 {
         level++;
-        current_health=current_health+health_regeneration_per_level;//need to make current health and max health to account for this
+        current_health=current_health+health_per_level;//health_regeneration_per_level;//need to make current health and max health to account for this
         //if (health + healthPerLevel) < max health then health = health + health_per_level, else health=max_health
         //same for mana
         health_regeneration=health_regeneration+health_regeneration_per_level;
@@ -64,20 +64,20 @@ float Champ::getManaRegeneration()
         return mana_regeneration;
 }
 
-int Champ::getMaxMana()
+float Champ::getMaxMana()
 {
         return max_mana;
 }
 
-int Champ::getCurrentMana()
+float Champ::getCurrentMana()
 {
         return current_mana;
 }
 
-float Champ::getMana5()
+/*float Champ::getMana5()
 {
         return mana5;
-}
+}*/
 
 float Champ::getAttackSpeedBonus()
 {
@@ -114,12 +114,12 @@ float Champ::getHealthRegenerationPerLevel()
         return health_regeneration_per_level;
 }
 
-float Champ::getHealth5PerLevel()
+/*float Champ::getHealth5PerLevel()
 {
         return health5_per_level;
-}
+}*/
 
-int Champ::getManaPerLevel()
+float Champ::getManaPerLevel()
 {
         return mana_per_level;
 }
@@ -160,20 +160,20 @@ void Champ::setManaRegeneration(float new_mana_regeneration)
         mana_regeneration = new_mana_regeneration;
 }
 
-void Champ::setMaxMana(int new_max_mana)
+void Champ::setMaxMana(float new_max_mana)
 {
         max_mana = new_max_mana;
 }
 
-void Champ::setCurrentMana(int new_current_mana)
+void Champ::setCurrentMana(float new_current_mana)
 {
         current_mana = new_current_mana;
 }
 
-void Champ::setMana5(float new_mana5)
+/*void Champ::setMana5(float new_mana5)
 {
         mana5 = new_mana5;
-}
+}*/
 
 void Champ::setAttackSpeedBonus(float new_attack_speed_bonus)
 {
@@ -210,12 +210,12 @@ void Champ::setHealthRegenerationPerLevel(float new_health_regeneration_per_leve
         health_regeneration_per_level = new_health_regeneration_per_level;
 }
 
-void Champ::setHealth5PerLevel(float new_health5_per_level)
+/*void Champ::setHealth5PerLevel(float new_health5_per_level)
 {
         health5_per_level = new_health5_per_level;
-}
+}*/
 
-void Champ::setManaPerLevel(int new_mana_per_level)
+void Champ::setManaPerLevel(float new_mana_per_level)
 {
         mana_per_level = new_mana_per_level;
 }

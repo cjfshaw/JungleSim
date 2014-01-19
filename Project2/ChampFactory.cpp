@@ -11,7 +11,7 @@ Champ * Champfactory::CreateNunu()
         new_champ->setMaxMana(1000);
         new_champ->setCurrentMana(1000);
         new_champ->setManaRegeneration(10);
-        new_champ->setMana5(50);
+        //new_champ->setMana5(50);
         new_champ->setAttackSpeedBonus(0);
         new_champ->setModifiedAttackSpeed(0.625);//( new_champ->getBaseAttackSpeed() ( ( new_champ->getBaseAttackSpeedPerLevel * (new_champ->getLevel()-1) ) + new_champ->getAttackSpeedBonus() ) - new_champ->getBaseAttackSpeed() );
         new_champ->setCriticalBonus(200);
@@ -27,7 +27,7 @@ Champ * Champfactory::CreateNunu()
         new_champ->setCriticalChance(0);
 
         new_champ->setHealthRegenerationPerLevel(100);
-        new_champ->setHealth5PerLevel(5);
+        //new_champ->setHealth5PerLevel(5);
         new_champ->setManaPerLevel(50);
         new_champ->setManaRegenerationPerLevel(5);
         new_champ->setDamagePerLevel(3.45);
