@@ -12,7 +12,7 @@ using namespace std;
 void Champ::LevelUp() //upgrade the Champ's stats to the ones at the next level
 {
         level++;
-        current_health=current_health+health_per_level;//health_regeneration_per_level;//need to make current health and max health to account for this
+        current_health=current_health+health_per_level;
         //if (health + healthPerLevel) < max health then health = health + health_per_level, else health=max_health
         //same for mana
         health_regeneration=health_regeneration+health_regeneration_per_level;
