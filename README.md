@@ -60,21 +60,17 @@ Level up functionality needs to be double checked.
 Remaining goals
 --------------------------------------------
 
-1.) Debug MonsterFactory and affected files: MonsterFactory.h, MonsterFactory.cpp, main.cpp
-
 2.) Add unit testing.
-
-3.) Expand MonsterFactory to include all monsters: Elder Lizard, Young Lizard, Ancient Golem, Big Golem, Little Golem, Large Wraith, Little Wraith, Wight.
 
 4.) Expand MonsterFactory functionality to create monsters in an array.  Useful for multiple-unit spell targeting later.
 
-5.) Create ChampFactory with "Nunu" and allow it to create champs in an array.
+5.) Allow ChampFactory to create champs in an array.
 
 6.) Move extraneous functionality from Champ class (Level-up, CheckExperience).  Unsure where to move it to, possibly create another class.
 
 7.) Add sigils and sigil transfer after a large minion is killed (assuming I can find info on how much hp/mp is transferred.)  This may require adding another identifier to minions to determine whether they are a large or small minion.
 
-8.) Add regeneration functionality.  Do not allow current hp/mana to exceed maximum hp/mana.  This may need to be split into subtasks as the regeneration functionality may be larger than expected.
+8.) Update regeneration functionality to work properly off of time instead of working off a if(1).
 
 9.) Add a game timer that shifts simulation time to in-game timer.
 
