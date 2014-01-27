@@ -39,27 +39,49 @@ The general design philosophy for this program is to start with core functionali
 
 The latest version
 --------------------------------------------
-Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  The code has been refactored and reorganized to keep it from getting out of hand, but much of the functionality remains in main.cpp.
+Currently the simulator runs through the red buff camp and the blue buff camp.  He can kill them and level up.  The code has been refactored and reorganized to keep it from getting out of hand, but there is still much to be done.
 
-The current code does not account for preseason 4 changes.  Advancement of the code has been slowed so that the code base could be 'cleaned up' before proceeding.
+The current code does not account for all preseason 4 changes.  I have had a difficult time finding information for some things, such as how much hp/mana is restored when a large monster is killed.
+
+A database is being worked on now in order to streamline future code.
 
 
 
 Next to-do
 --------------------------------------------
-Verify level-up functionality is working.  Place each monster camp into it's own array, use the arrays in later functions (like fightcamp) as opposed to using the individual objects.
+Place each monster camp into it's own array, use the arrays in later functions (like fightcamp) as opposed to using the individual objects.  Arrays are necessary for multi-target spells later.
+
+Creating a database for runes.  This will eventually house champions and monsters as well.
 
 
 
 Latest problems
 --------------------------------------------
-Level up functionality needs to be double checked.
+Need to get the database working, then use that for runes.
 
 
 
 Remaining goals
 --------------------------------------------
 
+HIGH PRIORITY
+--------------
+17.) Add popular/standard runes.
+
+18.) Add popular/standard items.
+
+19.) Add popular/standard masteries.
+
+20.) Add learned abilities. May need to do this in tandem with innate abilities and first real champion.
+
+21.) Add innate abilities. May need to do this in tandem with learned abilities and first real champion.
+
+22.) Add first real champion.
+
+This should be a champion who is relatively easy to code and exposes the code to very few additional paths in order to get a working prototype out faster.  Currently considering Fiora.
+
+MEDIUM PRIOTIY
+--------------
 2.) Add unit testing.
 
 4.) Expand MonsterFactory functionality to create monsters in an array.  Useful for multiple-unit spell targeting later.
@@ -67,6 +89,11 @@ Remaining goals
 5.) Allow ChampFactory to create champs in an array.
 
 6.) Move extraneous functionality from Champ class (Level-up, CheckExperience).  Unsure where to move it to, possibly create another class.
+
+LOW PRIORITY
+--------------
+
+
 
 7.) Add sigils and sigil transfer after a large minion is killed (assuming I can find info on how much hp/mp is transferred.)  This may require adding another identifier to minions to determine whether they are a large or small minion.
 
@@ -96,19 +123,6 @@ Note: MS and times gathered for red to blue buff are below.
 
 16.) Add red buff. May require that attack functionality is moved out of main.cpp to more easily account for both damage-over-time and different damage types (physical, magical, true).
 
-17.) Add popular/standard runes.
-
-18.) Add popular/standard items.
-
-19.) Add popular/standard masteries.
-
-20.) Add learned abilities. May need to do this in tandem with innate abilities and first real champion.
-
-21.) Add innate abilities. May need to do this in tandem with learned abilities and first real champion.
-
-22.) Add first real champion.
-
-This should be a champion who is relatively easy to code and exposes the code to very few additional paths in order to get a working prototype out faster.  Currently considering Fiora.
 
 23.) Add a script that runs multiple scenarios.
 
