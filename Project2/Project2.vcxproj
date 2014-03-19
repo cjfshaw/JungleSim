@@ -65,6 +65,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BattleManager.h" />
     <ClInclude Include="champ.h" />
     <ClInclude Include="ChampFactory.h" />
     <ClInclude Include="monster.h" />
@@ -72,6 +73,7 @@
     <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BattleManager.cpp" />
     <ClCompile Include="champ.cpp" />
     <ClCompile Include="ChampFactory.cpp" />
     <ClCompile Include="main.cpp" />

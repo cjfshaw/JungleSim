@@ -7,6 +7,7 @@
 #include "ChampFactory.h"
 #include "Monster.h"
 #include "MonsterFactory.h"
+#include "BattleManager.h"
 
 using namespace std;
 
