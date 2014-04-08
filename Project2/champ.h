@@ -11,7 +11,7 @@ private:
         float mana_regeneration;
         float max_mana;
         float current_mana;
-        //float mana5;
+        float mana5;
         float attack_speed_bonus;
         float modified_attack_speed;
         int critical_bonus;
@@ -21,7 +21,7 @@ private:
         //level up stats
 		float health_per_level;
         float health_regeneration_per_level;
-        //float health5_per_level;
+        float health5_per_level;
         float mana_per_level;
         float mana_regeneration_per_level;
         float damage_per_level;
@@ -41,14 +41,14 @@ public:
         float getManaRegeneration();
     float getMaxMana();
     float getCurrentMana();
-    //float getMana5();
+    float getMana5();
     float getAttackSpeedBonus();
     float getModifiedAttackSpeed();
     int getCriticalBonus();
     float getExperience();
     int getLevel();
         float getHealthRegenerationPerLevel();
-    //float getHealth5PerLevel();
+    float getHealth5PerLevel();
     float getManaPerLevel();
     float getManaRegenerationPerLevel();
     float getDamagePerLevel();
@@ -62,14 +62,14 @@ public:
         void setManaRegeneration(float new_mana_regeneration);
     void setMaxMana(float new_max_mana);
     void setCurrentMana(float new_current_mana);
-    //void setMana5(float new_mana5);
+    void setMana5(float new_mana5);
     void setAttackSpeedBonus(float new_attack_speed_bonus);
     void setModifiedAttackSpeed(float new_modified_attack_speed);
     void setCriticalBonus(int new_critical_bonus);
     void setExperience(float new_experience);
     void setLevel(int new_level);        
         void setHealthRegenerationPerLevel(float new_health_regeneration_per_level);
-    //void setHealth5PerLevel(float new_health5_per_level);
+    void setHealth5PerLevel(float new_health5_per_level);
     void setManaPerLevel(float new_mana_per_level);
     void setManaRegenerationPerLevel(float new_mana_per_level);
     void setDamagePerLevel(float new_damage_per_level);

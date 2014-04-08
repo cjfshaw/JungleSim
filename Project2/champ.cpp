@@ -74,10 +74,10 @@ float Champ::getCurrentMana()
         return current_mana;
 }
 
-/*float Champ::getMana5()
+float Champ::getMana5()
 {
         return mana5;
-}*/
+}
 
 float Champ::getAttackSpeedBonus()
 {
@@ -114,10 +114,10 @@ float Champ::getHealthRegenerationPerLevel()
         return health_regeneration_per_level;
 }
 
-/*float Champ::getHealth5PerLevel()
+float Champ::getHealth5PerLevel()
 {
         return health5_per_level;
-}*/
+}
 
 float Champ::getManaPerLevel()
 {
@@ -170,10 +170,10 @@ void Champ::setCurrentMana(float new_current_mana)
         current_mana = new_current_mana;
 }
 
-/*void Champ::setMana5(float new_mana5)
+void Champ::setMana5(float new_mana5)
 {
         mana5 = new_mana5;
-}*/
+}
 
 void Champ::setAttackSpeedBonus(float new_attack_speed_bonus)
 {
@@ -210,10 +210,10 @@ void Champ::setHealthRegenerationPerLevel(float new_health_regeneration_per_leve
         health_regeneration_per_level = new_health_regeneration_per_level;
 }
 
-/*void Champ::setHealth5PerLevel(float new_health5_per_level)
+void Champ::setHealth5PerLevel(float new_health5_per_level)
 {
         health5_per_level = new_health5_per_level;
-}*/
+}
 
 void Champ::setManaPerLevel(float new_mana_per_level)
 {

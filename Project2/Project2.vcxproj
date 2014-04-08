@@ -70,6 +70,7 @@
     <ClInclude Include="ChampFactory.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="MonsterFactory.h" />
+    <ClInclude Include="Rune.h" />
     <ClInclude Include="unit.h" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +80,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="MonsterFactory.cpp" />
+    <ClCompile Include="Rune.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
