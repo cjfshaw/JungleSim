@@ -8,6 +8,7 @@
 #include "Monster.h"
 #include "MonsterFactory.h"
 #include "BattleManager.h"
+#include "Rune.h"
 
 using namespace std;
 

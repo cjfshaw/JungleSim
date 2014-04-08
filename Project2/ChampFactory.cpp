@@ -5,9 +5,9 @@ Champ * Champfactory::CreateNunu()
         Champ * new_champ = new Champ();
         
         new_champ->setName("Nunu");
-        new_champ->setMaxHealth(5000);
-        new_champ->setCurrentHealth(5000);
-        new_champ->setHealthRegeneration(50);
+		new_champ->setMaxHealth( 5000 );
+		new_champ->setCurrentHealth( 5000 );
+		new_champ->setHealthRegeneration(50);
         new_champ->setMaxMana(1000);
         new_champ->setCurrentMana(1000);
         new_champ->setManaRegeneration(10);
