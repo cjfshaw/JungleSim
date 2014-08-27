@@ -125,7 +125,17 @@ Note: MS and times gathered for red to blue buff are below.
 
 - Parse the output log to compare results.
 
-
+Minimum Viable Product (MVP)
+--------------------------------------------
+The simulation must:
+	-Create a champion with a predefined (static) sets of stats and progression path
+		-Progression path: What items to buy, skills to level, and path to take
+	-Defeat one buff camp to reach level 2
+		-Acquire the stats that come with levelling up and choose an ability
+	-Defeat a minor camp and a second buff camp to reach level 3
+		-Acquire the stats that come with levelling up and choose an ability
+	-Record the stats
+	-Present the stats
 
 Questions or comments?
 --------------------------------------------
